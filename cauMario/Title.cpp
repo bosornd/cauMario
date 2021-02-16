@@ -545,7 +545,7 @@ void Title_main() {
 	GameEnterButton[4] = createObject("image/Title/unlock.png", titleScene, 70, 70, false, 1.0f);
 	GameEnterButton[5] = createObject("image/Title/unlock.png", titleScene, 70, 70, false, 1.0f);
 
-
+	/*
 	if (stage2Clear == true) {
 		enterTitle(2);
 	}
@@ -554,6 +554,7 @@ void Title_main() {
 	else if (stage5Clear == true) {
 		enterTitle(5);
 	}
+	*/
 
 	for (int i = 0; i < 6; i++) {
 

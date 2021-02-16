@@ -583,11 +583,11 @@ void Game1_keyboardCallback(KeyCode code, KeyState state)
 
 		if (code == KeyCode::KEY_UP_ARROW) {			// UP
 			g1dy += (state == KeyState::KEY_PRESSED ? speed : -speed);
-			//g1c1heading = 1;
+			g1c1heading = 1;
 		}
 		else if (code == KeyCode::KEY_DOWN_ARROW) {		// DOWN
 			g1dy -= (state == KeyState::KEY_PRESSED ? speed : -speed);
-			//g1c1heading = 0;
+			g1c1heading = 0;
 		}
 		else if (code == KeyCode::KEY_RIGHT_ARROW) {		// RIGHT
 			g1dx += (state == KeyState::KEY_PRESSED ? speed : -speed);
@@ -611,7 +611,7 @@ void Game1_main() {
 	
 	scene_g1 = createScene("STGAE4 유령의 집", "image/game1/배경.png");
 
-	g1c1 = g1createObject("image/game1/마리오오른쪽/마리오 애니메이션1.png", scene_g1, g1c1x, g1c1y, true);	
+	g1c1 = g1createObject("image/game1/마리오오른쪽/1.png", scene_g1, g1c1x, g1c1y, true);	
 	scaleObject(g1c1, 0.5f);
 	
 	
