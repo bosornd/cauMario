@@ -1,4 +1,4 @@
-#include <bangtal.h>
+ï»¿#include <bangtal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -32,14 +32,14 @@ ObjectID createObject_g3(const char* image, SceneID scene, int x, int y, bool sh
 	return object;
 }
 
-void patternMaker_g3() {		// Àû Æ¯¼º ÀúÀåÇÒ Á¤¼ö ¹è¿­ ¸¸µé±â
+void patternMaker_g3() {		// ì  íŠ¹ì„± ì €ì¥í•  ì •ìˆ˜ ë°°ì—´ ë§Œë“¤ê¸°
 
 	int i, x, y, temp;
 
 	srand(time(NULL));
 
-	//1~4±îÁö´Â ¸ñ¼ûÇÏ³ª ¸÷ Â÷·Ê´ë·Î N,B,R,Y
-	//5~8±îÁö´Â ¸ñ¼û ¿©·¯°³ ¸÷ Â÷·Ê´ë·Î N,B,R,Y
+	//1~4ê¹Œì§€ëŠ” ëª©ìˆ¨í•˜ë‚˜ ëª¹ ì°¨ë¡€ëŒ€ë¡œ N,B,R,Y
+	//5~8ê¹Œì§€ëŠ” ëª©ìˆ¨ ì—¬ëŸ¬ê°œ ëª¹ ì°¨ë¡€ëŒ€ë¡œ N,B,R,Y
 
 	for (i = 0; i < 32; i++) {
 		if (i < 5) pattern[i] = 1;
@@ -65,7 +65,7 @@ void patternMaker_g3() {		// Àû Æ¯¼º ÀúÀåÇÒ Á¤¼ö ¹è¿­ ¸¸µé±â
 	}
 }
 
-void enemyLife_g3() {			// Àû ¸ñ¼û ·£´ı ¼³Á¤
+void enemyLife_g3() {			// ì  ëª©ìˆ¨ ëœë¤ ì„¤ì •
 
 	srand(time(NULL));
 
@@ -76,7 +76,7 @@ void enemyLife_g3() {			// Àû ¸ñ¼û ·£´ı ¼³Á¤
 	}
 }
 
-void createEnemy_g3() {		// Àû ¿ÀºêÁ§Æ® »ı¼º
+void createEnemy_g3() {		// ì  ì˜¤ë¸Œì íŠ¸ ìƒì„±
 
 	int i;
 
@@ -89,7 +89,7 @@ void createEnemy_g3() {		// Àû ¿ÀºêÁ§Æ® »ı¼º
 	}
 }
 
-void ending_g3() {		//°ÔÀÓ Å¬¸®¾î ÈÄ Ã³¸®
+void ending_g3() {		//ê²Œì„ í´ë¦¬ì–´ í›„ ì²˜ë¦¬
 
 	stopTimer(enemyMove);
 
@@ -97,7 +97,7 @@ void ending_g3() {		//°ÔÀÓ Å¬¸®¾î ÈÄ Ã³¸®
 		if (pattern[i] != 0) hideObject(enemy[i]);
 	}
 
-	sprintf_s(info_g3, "%d ÄÚÀÎ È¹µæ!", score_g3);
+	sprintf_s(info_g3, "%d ì½”ì¸ íšë“!", score_g3);
 	showMessage(info_g3);
 
 	coin += score_g3;
@@ -107,7 +107,7 @@ void ending_g3() {		//°ÔÀÓ Å¬¸®¾î ÈÄ Ã³¸®
 
 }
 
-void minusHeart_g3() {			// ¿À´ä ½Ã ¸ñ¼û °¨¼Ò
+void minusHeart_g3() {			// ì˜¤ë‹µ ì‹œ ëª©ìˆ¨ ê°ì†Œ
 
 	life_g3--;
 	showObject(damaged_g3);
@@ -124,7 +124,7 @@ void minusHeart_g3() {			// ¿À´ä ½Ã ¸ñ¼û °¨¼Ò
 	}
 }
 
-void zeroCheck_g3() {			// ´ÙÀ½ ¿ÀºêÁ§Æ®°¡ ¾øÀ» ¶§ º¯¼ö clear Áõ°¡ ÇÔ¼ö
+void zeroCheck_g3() {			// ë‹¤ìŒ ì˜¤ë¸Œì íŠ¸ê°€ ì—†ì„ ë•Œ ë³€ìˆ˜ clear ì¦ê°€ í•¨ìˆ˜
 	if (clear_g3 != 32 && pattern[clear_g3] == 0) {
 		clear_g3++;
 		if (pattern[clear_g3] != 0) return;
@@ -132,7 +132,7 @@ void zeroCheck_g3() {			// ´ÙÀ½ ¿ÀºêÁ§Æ®°¡ ¾øÀ» ¶§ º¯¼ö clear Áõ°¡ ÇÔ¼ö
 	}
 }
 
-void normalHitPlay_g3() {		// ÆòÅ¸ È¿°úÀ½ Àç»ı
+void normalHitPlay_g3() {		// í‰íƒ€ íš¨ê³¼ìŒ ì¬ìƒ
 	switch (NhitCount_g3) {
 	case 0:
 		playSound(normalHit_g3, false);
@@ -157,7 +157,7 @@ void normalHitPlay_g3() {		// ÆòÅ¸ È¿°úÀ½ Àç»ı
 	}
 }
 
-void finalHitPlay_g3() {		// ¸·Å¸ È¿°úÀ½ Àç»ı
+void finalHitPlay_g3() {		// ë§‰íƒ€ íš¨ê³¼ìŒ ì¬ìƒ
 	switch (FhitCount_g3) {
 	case 0:
 		playSound(finalHit_g3, false);
@@ -171,7 +171,7 @@ void finalHitPlay_g3() {		// ¸·Å¸ È¿°úÀ½ Àç»ı
 }
 
 
-void judge_g3(int num1, int num2) {	// Å¬¸¯ ½Ã Á¤,¿À´ä È®ÀÎ
+void judge_g3(int num1, int num2) {	// í´ë¦­ ì‹œ ì •,ì˜¤ë‹µ í™•ì¸
 
 	if (clear_g3 == 32) return;
 	else if (life_g3 == 0) return;
@@ -345,11 +345,11 @@ void Game3_timerCallback(TimerID timer) {
 
 void Game3_main() {
 
-	scene1_g3 = createScene("STAGE1 Æò¿ø", "image/game3/cover.png");
-	scene2_g3 = createScene("STAGE1 Æò¿ø", "image/game3/cover2.png");
+	scene1_g3 = createScene("STAGE1 í‰ì›", "image/game3/cover.png");
+	scene2_g3 = createScene("STAGE1 í‰ì›", "image/game3/cover2.png");
 
-	startbutton_g3 = createObject_g3("image/game3/½ÃÀÛ.png", scene1_g3, 520, 350, true);
-	restartbutton_g3 = createObject_g3("image/game3/´Ù½Ã½ÃÀÛ.png", scene2_g3, 480, 380, false);
+	startbutton_g3 = createObject_g3("image/game3/ì‹œì‘.png", scene1_g3, 520, 350, true);
+	restartbutton_g3 = createObject_g3("image/game3/ë‹¤ì‹œì‹œì‘.png", scene2_g3, 480, 380, false);
 	endbutton_g3 = createObject_g3("image/game3/goMap.png", scene2_g3, 10, 10, false);
 	scaleObject(endbutton_g3, 1.3f);
 
@@ -367,7 +367,7 @@ void Game3_main() {
 
 	damaged_g3 = createObject_g3("image/game3/damage.png", scene2_g3, 0, 0, false);
 	
-	bgm_g3 = createSound("sounds/¹è°æÀ½/Æò¿ø.mp3");
+	bgm_g3 = createSound("sounds/ë°°ê²½ìŒ/í‰ì›.mp3");
 	normalHit_g3 = createSound("image/game3/normalHit.mp3");
 	normalHit1_g3 = createSound("image/game3/normalHit1.mp3");
 	normalHit2_g3 = createSound("image/game3/normalHit2.mp3");
@@ -375,7 +375,7 @@ void Game3_main() {
 	normalHit4_g3 = createSound("image/game3/normalHit4.mp3");
 	finalHit_g3 = createSound("image/game3/finalHit.mp3");
 	finalHit1_g3 = createSound("image/game3/finalHit1.mp3");
-	fail_g3 = createSound("sounds/°øÅë/¿À´ä.mp3");
+	fail_g3 = createSound("sounds/ê³µí†µ/ì˜¤ë‹µ.mp3");
 
 	enemyMove = createTimer(duration_g3);
 	damageTime_g3 = createTimer(0.2f);

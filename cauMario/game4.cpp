@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include<bangtal.h>
 #include <iostream>
 #include<math.h>
@@ -35,37 +35,37 @@ extern SoundID g1deadsound;
 bool g4dead = false;
 
 const char* g4objfile[5] =
-{ "image/game4/¼±ÀÎ/¼±ÀÎ ¾Ö´Ï¸ÞÀÌ¼Ç 1.png" ,"image/game4/ÇØ°ñ °ÅºÏÀÌ/1.png" ,"image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 1.png" ,"image/game4/c5.png" ,"image/game4/c6.png"  };
+{ "image/game4/ì„ ì¸/ì„ ì¸ ì• ë‹ˆë©”ì´ì…˜ 1.png" ,"image/game4/í•´ê³¨ ê±°ë¶ì´/1.png" ,"image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 1.png" ,"image/game4/c5.png" ,"image/game4/c6.png"  };
 int g4objnumber[20] ={ 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19 };
-//0123 Áö³×   4567 c3   891011 c4  12131415 c5  16171819 c6
+//0123 ì§€ë„¤   4567 c3   891011 c4  12131415 c5  16171819 c6
 int movetype, g4howfar;
 int g4difficulty;
 double g4score=0;
 bool stage2Clear = false;
 
-//-----------¼±ÀÎ---------
+//-----------ì„ ì¸---------
 
 double g4obj1x[4], g4obj1y[4];
 double g4obj1difficulty;
 
-//------------ÇØ°ñ °ÅºÏÀÌ-------
+//------------í•´ê³¨ ê±°ë¶ì´-------
 double g4obj2x[4], g4obj2y[4];
 
 
 
 
-//------------ÇÏ´Ã °ÅºÏÀÌ-------
+//------------í•˜ëŠ˜ ê±°ë¶ì´-------
 
 double g4obj3x[4], g4obj3y[4];
 int g4obj3startx[4], g4obj3starty[4] ;
 
 
-//------------Á¡ÇÁ ÇÏ´Â ³ð-------
+//------------ì í”„ í•˜ëŠ” ë†ˆ-------
 
 double g4obj4x[4], g4obj4y[4];
 
 
-//------------¸¶¸®¿À Á¡ÇÁ----------
+//------------ë§ˆë¦¬ì˜¤ ì í”„----------
 double g4c1y=110,g4gravity=20, g4c1yjump2start;
 bool g4isjumping1, g4isjumping2,g4isBottom,g4jumping1process=false, g4jumping2process = false;
 double g4c1jump1cache, g4c1jump2cache;
@@ -81,38 +81,38 @@ bool g4jumping1_1, g4jumping2_1;
 
 
 
-//----------------¾Ö´Ï¸ÞÀÌ¼Ç------------
-//---------¸¶¸®¿À----
+//----------------ì• ë‹ˆë©”ì´ì…˜------------
+//---------ë§ˆë¦¬ì˜¤----
 const char* g4c1animationfile[10] =
-{ "image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç1.png","image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç2.png","image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç3.png","image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç4.png",
-"image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç5.png","image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç6.png" ,"image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç7.png" ,"image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç8.png"
-,"image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç9.png" ,"image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç10.png" };
+{ "image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜1.png","image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜2.png","image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜3.png","image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜4.png",
+"image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜5.png","image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜6.png" ,"image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜7.png" ,"image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜8.png"
+,"image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜9.png" ,"image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜10.png" };
 const char* g4c1jumpanimationfile[3] =
-{ "image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç Á¡ÇÁ 1.png","image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç Á¡ÇÁ 2.png","image/game4/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç Á¡ÇÁ 3.png" };
+{ "image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜ ì í”„ 1.png","image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜ ì í”„ 2.png","image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜ ì í”„ 3.png" };
 double g4c1animationcache, g4c1animationcache1;
 
 
-//-------¼±ÀÎ------------
-double g4obj1animationcache, g4obj1animationcache1;//1ÀÌ °è¼Ó Áõ°¡ÇÏ´Â °ªÀÌ°í 0°¡ ³ª¸ÓÁö Àá½Ã ÀúÀåÇÏ´Â º¯¼ö
+//-------ì„ ì¸------------
+double g4obj1animationcache, g4obj1animationcache1;//1ì´ ê³„ì† ì¦ê°€í•˜ëŠ” ê°’ì´ê³  0ê°€ ë‚˜ë¨¸ì§€ ìž ì‹œ ì €ìž¥í•˜ëŠ” ë³€ìˆ˜
 const char* g4obj1animationfile[4] =
-{ "image/game4/¼±ÀÎ/¼±ÀÎ ¾Ö´Ï¸ÞÀÌ¼Ç 1.png","image/game4/¼±ÀÎ/¼±ÀÎ ¾Ö´Ï¸ÞÀÌ¼Ç 2.png","image/game4/¼±ÀÎ/¼±ÀÎ ¾Ö´Ï¸ÞÀÌ¼Ç 3.png","image/game4/¼±ÀÎ/¼±ÀÎ ¾Ö´Ï¸ÞÀÌ¼Ç 2.png" };
+{ "image/game4/ì„ ì¸/ì„ ì¸ ì• ë‹ˆë©”ì´ì…˜ 1.png","image/game4/ì„ ì¸/ì„ ì¸ ì• ë‹ˆë©”ì´ì…˜ 2.png","image/game4/ì„ ì¸/ì„ ì¸ ì• ë‹ˆë©”ì´ì…˜ 3.png","image/game4/ì„ ì¸/ì„ ì¸ ì• ë‹ˆë©”ì´ì…˜ 2.png" };
 
 
-//---------ÇØ°ñ °ÅºÏÀÌ-----------
+//---------í•´ê³¨ ê±°ë¶ì´-----------
 double g4obj2animationcache, g4obj2animationcache1;
 const char* g4obj2animationfile[10] =
-{ "image/game4/ÇØ°ñ °ÅºÏÀÌ/1.png","image/game4/ÇØ°ñ °ÅºÏÀÌ/2.png","image/game4/ÇØ°ñ °ÅºÏÀÌ/3.png","image/game4/ÇØ°ñ °ÅºÏÀÌ/4.png" 
-,"image/game4/ÇØ°ñ °ÅºÏÀÌ/5.png" ,"image/game4/ÇØ°ñ °ÅºÏÀÌ/6.png" ,"image/game4/ÇØ°ñ °ÅºÏÀÌ/7.png" ,"image/game4/ÇØ°ñ °ÅºÏÀÌ/8.png" 
-,"image/game4/ÇØ°ñ °ÅºÏÀÌ/9.png" ,"image/game4/ÇØ°ñ °ÅºÏÀÌ/10.png" };
+{ "image/game4/í•´ê³¨ ê±°ë¶ì´/1.png","image/game4/í•´ê³¨ ê±°ë¶ì´/2.png","image/game4/í•´ê³¨ ê±°ë¶ì´/3.png","image/game4/í•´ê³¨ ê±°ë¶ì´/4.png" 
+,"image/game4/í•´ê³¨ ê±°ë¶ì´/5.png" ,"image/game4/í•´ê³¨ ê±°ë¶ì´/6.png" ,"image/game4/í•´ê³¨ ê±°ë¶ì´/7.png" ,"image/game4/í•´ê³¨ ê±°ë¶ì´/8.png" 
+,"image/game4/í•´ê³¨ ê±°ë¶ì´/9.png" ,"image/game4/í•´ê³¨ ê±°ë¶ì´/10.png" };
 
 
-//---------ÇÏ´Ã °ÅºÏÀÌ---------
+//---------í•˜ëŠ˜ ê±°ë¶ì´---------
 double g4obj3animationcache, g4obj3animationcache1;
 const char* g4obj3animationfile[7] =
-{ "image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 1.png","image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 2.png","image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 3.png","image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 4.png",
-"image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 5.png","image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 6.png","image/game4/ÇÏ´Ã °ÅºÏÀÌ/ÇÏ´Ã°ÅºÏÀÌ ¾Ö´Ï¸ÞÀÌ¼Ç 7.png", };
+{ "image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 1.png","image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 2.png","image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 3.png","image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 4.png",
+"image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 5.png","image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 6.png","image/game4/í•˜ëŠ˜ ê±°ë¶ì´/í•˜ëŠ˜ê±°ë¶ì´ ì• ë‹ˆë©”ì´ì…˜ 7.png", };
 
-//-----------¹Ù´Ú----------
+//-----------ë°”ë‹¥----------
 int g4floor1x=0, g4floor2x=2500;
 int g4background1x = 0, g4background2x = 2000;
 
@@ -277,7 +277,7 @@ void g4flooranimation() {
 
 void g4scoremessage() {
     char buf[256];
-    sprintf_s(buf, "°£ °Å¸® : %0.f m", g4score, scene_g4);
+    sprintf_s(buf, "ê°„ ê±°ë¦¬ : %0.f m", g4score, scene_g4);
     showMessage(buf);
 }
 
@@ -377,7 +377,7 @@ void g4jumpstate() {
 void g4jump1_1() {
     double g4c1ycache;
     
-    if (jump1_1xcache >= 100 || jump1_1xcache < -100) {//°è»ê ¹ÛÀÏ¶§
+    if (jump1_1xcache >= 100 || jump1_1xcache < -100) {//ê³„ì‚° ë°–ì¼ë•Œ
         jump1_1xcache = -100;
         g4c1y = floor_y;
         g4jumping1_1 = false;
@@ -393,7 +393,7 @@ void g4jump1_1() {
 }
 void g4jump2_1(double g4c1positiony) {
     double g4c1ycache;
-    if (jump2_1xcache >= 100 || jump2_1xcache < -100) {//°è»ê ¹ÛÀÏ¶§
+    if (jump2_1xcache >= 100 || jump2_1xcache < -100) {//ê³„ì‚° ë°–ì¼ë•Œ
         jump2_1xcache = -100;
         g4c1y = g4c1positiony;
         g4jumping2_1 = false;
@@ -557,7 +557,7 @@ void g4update() {
     g4death();
     g4stageclear();
     g4objselectshow();
-    //-------ÁÂÇ¥ÀÌµ¿
+    //-------ì¢Œí‘œì´ë™
     for (int i = 0; i < 4; i++) {
         g4obstaclemove(g4obj1[i], scene_g4, 1, i);
     }
@@ -571,7 +571,7 @@ void g4update() {
 
 
 
-    //-----¹èÄ¡
+    //-----ë°°ì¹˜
     for (int i=0; i < 4; i++) {
         locateObject(g4obj1[i], scene_g4, g4obj1x[i], g4obj1y[i]);
     }
@@ -590,7 +590,7 @@ void g4update() {
     //locateObject(g4background2, scene_g4, g4background2x, 0);
     locateObject(g4c1, scene_g4, 210, g4c1y);
 
-//-------³­ÀÌµµ
+//-------ë‚œì´ë„
     if (g4score > 0 && g4score < 5) {
         g4difficulty = 1;
     }
@@ -688,7 +688,7 @@ void Game4_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 
 }
 void Game4_timerCallback(TimerID timer) {
-	if (timer == g4timer1) {//Á¡ÇÁ 1
+	if (timer == g4timer1) {//ì í”„ 1
         
     /* g4jump1();
      setTimer(g4timer1, 0.01f);
@@ -701,7 +701,7 @@ void Game4_timerCallback(TimerID timer) {
         setTimer(g4timer1, 0.01f);
         startTimer(g4timer1);
 	}
-    if (timer == g4timer2) {//Á¡ÇÁ 2
+    if (timer == g4timer2) {//ì í”„ 2
         /*g4jump2(); 
         setTimer(g4timer2, 0.01f);
         startTimer(g4timer2);*/
@@ -712,7 +712,7 @@ void Game4_timerCallback(TimerID timer) {
         setTimer(g4timer2, 0.01f);
         startTimer(g4timer2);
     }
-    if (timer == g4obmove) {//Àå¾Ö¹° ¿òÁ÷ÀÓ
+    if (timer == g4obmove) {//ìž¥ì• ë¬¼ ì›€ì§ìž„
         setTimer(g4obmove, 0.04f);
         startTimer(g4obmove);
         g4update();
@@ -729,17 +729,17 @@ void Game4_soundCallback(SoundID sound) {
 
 void Game4_keyboardCallback(KeyCode code, KeyState state)
  {
-     if (code == 75) {			// 
+     if (code == KeyCode::KEY_SPACE) {			// 
         if (nowGameSceneNum == 4) {
             //g4jumping1_1 = (state == KeyState::KEYBOARD_PRESSED ? true : false);
-             if (state == KeyState::KEYBOARD_PRESSED) {//
+             if (state == KeyState::KEY_PRESSED) {//
                 
                     if (g4jumping1_1 == false) {
                         g4jumping1_1 = true;
                     }
                       else if (g4jumping1_1 == true) {
-                        //if (g4jump1_1front == false) {//1´ÜÁ¡ÇÁ ¾ÕºÎºÐ¿¡¼­ Á¡ÇÁ ±ÝÁö
-                            if (g4jump2ban == false) {//2´Ü Á¡ÇÁÈÄ Á¡ÇÁ ±ÝÁö
+                        //if (g4jump1_1front == false) {//1ë‹¨ì í”„ ì•žë¶€ë¶„ì—ì„œ ì í”„ ê¸ˆì§€
+                            if (g4jump2ban == false) {//2ë‹¨ ì í”„í›„ ì í”„ ê¸ˆì§€
                                 if (g4jump2_1back == false) {
 
                                     if (g4jumping2_1 == false) {
@@ -770,18 +770,18 @@ void Game4_main() {
     setGameOption(GameOption::GAME_OPTION_INVENTORY_BUTTON, false);
     setGameOption(GameOption::GAME_OPTION_MESSAGE_BOX_BUTTON, false);
 
-	scene_g4 = createScene("STAGE2 »ç¸·", "image/game4/¹è°æ.png");
-    g4background1 = g4createObject("image/game4/¹è°æ.png", scene_g4, -500, 0, true);
-    g4background2 = g4createObject("image/game4/¹è°æ.png", scene_g4, 2000, 0, true);
-    g4floor1 = g4createObject("image/game4/¹Ù´Ú.png", scene_g4, 0, 0, true);
-    g4floor2 = g4createObject("image/game4/¹Ù´Ú.png", scene_g4, 2500, 0, true);
+	scene_g4 = createScene("STAGE2 ì‚¬ë§‰");
+    g4background1 = g4createObject("image/game4/ë°°ê²½.png", scene_g4, -500, 0, true);
+    g4background2 = g4createObject("image/game4/ë°°ê²½.png", scene_g4, 2000, 0, true);
+    g4floor1 = g4createObject("image/game4/ë°”ë‹¥.png", scene_g4, 0, 0, true);
+    g4floor2 = g4createObject("image/game4/ë°”ë‹¥.png", scene_g4, 2500, 0, true);
     
     g4startbutton = g4createObject("image/game4/start.png", scene_g4, 520, 320, true);
     g4restartbutton = g4createObject("image/game4/restart.png", scene_g4, 500, 330, false);
  
 
 
-	g4c1 = g4createObject("image/game4/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç1.png", scene_g4, 210, 110, true);
+	g4c1 = g4createObject("image/game4/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜1.png", scene_g4, 210, 110, true);
     for (int i = 0; i < 4; i++) {        
         g4obj1[i] = g4createObject(g4objfile[0], scene_g4, 1300, 110, true);
     }
@@ -797,7 +797,7 @@ void Game4_main() {
     }*/
     
     g4goMapButton = g4createObject("image/game6/goMap.png", scene_g4, 20, 20, true);
-    g4clear = g4createObject("image/game4/Å¬¸®¾î.png", scene_g4, 300, 350, false);
+    g4clear = g4createObject("image/game4/í´ë¦¬ì–´.png", scene_g4, 300, 350, false);
     scaleObject(g4clear, 0.5f);
 
 	g4timer1 = createTimer(0.05f);
@@ -805,7 +805,7 @@ void Game4_main() {
     g4obmove = createTimer(0.05f);
     g4difficult = createTimer(5.f);
     
-    g4theme = createSound("sounds/¹è°æÀ½/»ç¸·.mp3");
-    g4clearsound = createSound("sounds/°øÅë/°ÔÀÓÅ¬¸®¾î.wav");
+    g4theme = createSound("sounds/ë°°ê²½ìŒ/ì‚¬ë§‰.mp3");
+    g4clearsound = createSound("sounds/ê³µí†µ/ê²Œìž„í´ë¦¬ì–´.wav");
 
 }

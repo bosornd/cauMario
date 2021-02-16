@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include<bangtal.h>
 #include <iostream>
 #include<math.h>
@@ -16,7 +16,7 @@ extern void enterTitle(int clearScene);
 extern int coin;
 extern SoundID buttonClickSound;
 SceneID scene_g1;
-ObjectID g1c1, g1obj1[6][10],g1startbutton, g1restartbutton, g1goMapButton;//[¼¼·Î][°¡·Î][j][i]
+ObjectID g1c1, g1obj1[6][10],g1startbutton, g1restartbutton, g1goMapButton;//[ì„¸ë¡œ][ê°€ë¡œ][j][i]
 TimerID g1timer1, g1c1move,g1levelupgrade,g1score, g1difficult;
 SoundID bgm_g1,g1deadsound;
 
@@ -39,29 +39,29 @@ int g1c1x=500, g1c1y=200;
 int g1dx = 0, g1dy = 0;
 
 ObjectID g1obj1_1[30];
-int g1difficulty=0, obj1_1x[30], obj1_1y[30];//g1difficulty´Â Ãß°¡µÈ ¿ÀºêÁ§Æ® °³¼ö
+int g1difficulty=0, obj1_1x[30], obj1_1y[30];//g1difficultyëŠ” ì¶”ê°€ëœ ì˜¤ë¸Œì íŠ¸ ê°œìˆ˜
 int obj1_1speed = 7;
 double g1obj1_1moveblockx[30], g1obj1_1moveblocky[30];
 
-//---¾Ö´Ï¸ŞÀÌ¼Ç----
-//---¸¶¸®¿À---
+//---ì• ë‹ˆë©”ì´ì…˜----
+//---ë§ˆë¦¬ì˜¤---
 int g1c1heading;
-double g1c1animationcache, g1c1animationcache1;//1ÀÌ °è¼Ó Áõ°¡ÇÏ´Â °ªÀÌ°í 0°¡ ³ª¸ÓÁö Àá½Ã ÀúÀåÇÏ´Â º¯¼ö
+double g1c1animationcache, g1c1animationcache1;//1ì´ ê³„ì† ì¦ê°€í•˜ëŠ” ê°’ì´ê³  0ê°€ ë‚˜ë¨¸ì§€ ì ì‹œ ì €ì¥í•˜ëŠ” ë³€ìˆ˜
 const char* g1c1animationfilefront[10] =
-{ "image/game1/¸¶¸®¿À¾Õ/1.png","image/game1/¸¶¸®¿À¾Õ/2.png","image/game1/¸¶¸®¿À¾Õ/3.png","image/game1/¸¶¸®¿À¾Õ/4.png","image/game1/¸¶¸®¿À¾Õ/5.png",
-"image/game1/¸¶¸®¿À¾Õ/6.png","image/game1/¸¶¸®¿À¾Õ/7.png","image/game1/¸¶¸®¿À¾Õ/8.png","image/game1/¸¶¸®¿À¾Õ/9.png","image/game1/¸¶¸®¿À¾Õ/10.png" };
+{ "image/game1/ë§ˆë¦¬ì˜¤ì•/1.png","image/game1/ë§ˆë¦¬ì˜¤ì•/2.png","image/game1/ë§ˆë¦¬ì˜¤ì•/3.png","image/game1/ë§ˆë¦¬ì˜¤ì•/4.png","image/game1/ë§ˆë¦¬ì˜¤ì•/5.png",
+"image/game1/ë§ˆë¦¬ì˜¤ì•/6.png","image/game1/ë§ˆë¦¬ì˜¤ì•/7.png","image/game1/ë§ˆë¦¬ì˜¤ì•/8.png","image/game1/ë§ˆë¦¬ì˜¤ì•/9.png","image/game1/ë§ˆë¦¬ì˜¤ì•/10.png" };
 
 const char* g1c1animationfileback[6] =
-{ "image/game1/¸¶¸®¿ÀµÚ/1.png", "image/game1/¸¶¸®¿ÀµÚ/2.png", "image/game1/¸¶¸®¿ÀµÚ/3.png", 
-"image/game1/¸¶¸®¿ÀµÚ/4.png", "image/game1/¸¶¸®¿ÀµÚ/5.png", "image/game1/¸¶¸®¿ÀµÚ/6.png" };
+{ "image/game1/ë§ˆë¦¬ì˜¤ë’¤/1.png", "image/game1/ë§ˆë¦¬ì˜¤ë’¤/2.png", "image/game1/ë§ˆë¦¬ì˜¤ë’¤/3.png", 
+"image/game1/ë§ˆë¦¬ì˜¤ë’¤/4.png", "image/game1/ë§ˆë¦¬ì˜¤ë’¤/5.png", "image/game1/ë§ˆë¦¬ì˜¤ë’¤/6.png" };
 
 const char* g1c1animationfileleft[10] =
-{ "image/game1/¸¶¸®¿À¿ŞÂÊ/1.png", "image/game1/¸¶¸®¿À¿ŞÂÊ/2.png", "image/game1/¸¶¸®¿À¿ŞÂÊ/3.png", "image/game1/¸¶¸®¿À¿ŞÂÊ/4.png", "image/game1/¸¶¸®¿À¿ŞÂÊ/5.png",
- "image/game1/¸¶¸®¿À¿ŞÂÊ/6.png",  "image/game1/¸¶¸®¿À¿ŞÂÊ/7.png",  "image/game1/¸¶¸®¿À¿ŞÂÊ/8.png",  "image/game1/¸¶¸®¿À¿ŞÂÊ/9.png",  "image/game1/¸¶¸®¿À¿ŞÂÊ/10.png" };
+{ "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/1.png", "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/2.png", "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/3.png", "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/4.png", "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/5.png",
+ "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/6.png",  "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/7.png",  "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/8.png",  "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/9.png",  "image/game1/ë§ˆë¦¬ì˜¤ì™¼ìª½/10.png" };
 
 const char* g1c1animationfileright[10] =
-{ "image/game1/¸¶¸®¿À¿À¸¥ÂÊ/1.png","image/game1/¸¶¸®¿À¿À¸¥ÂÊ/2.png","image/game1/¸¶¸®¿À¿À¸¥ÂÊ/3.png","image/game1/¸¶¸®¿À¿À¸¥ÂÊ/4.png","image/game1/¸¶¸®¿À¿À¸¥ÂÊ/5.png",
-"image/game1/¸¶¸®¿À¿À¸¥ÂÊ/6.png", "image/game1/¸¶¸®¿À¿À¸¥ÂÊ/7.png", "image/game1/¸¶¸®¿À¿À¸¥ÂÊ/8.png", "image/game1/¸¶¸®¿À¿À¸¥ÂÊ/9.png", "image/game1/¸¶¸®¿À¿À¸¥ÂÊ/10.png"};
+{ "image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/1.png","image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/2.png","image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/3.png","image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/4.png","image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/5.png",
+"image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/6.png", "image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/7.png", "image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/8.png", "image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/9.png", "image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/10.png"};
 
 
 
@@ -83,7 +83,7 @@ ObjectID g1createObject(const char* image, SceneID scene, int x, int y, bool sho
 }
 
 void g1c1animation() {
-	if (g1c1heading == 0) {//¾Õ
+	if (g1c1heading == 0) {//ì•
 		g1c1animationcache = fmod(g1c1animationcache1, 10);
 		if (g1c1animationcache >= 0 && g1c1animationcache < 1) {
 			setObjectImage(g1c1, g1c1animationfilefront[0]);
@@ -119,7 +119,7 @@ void g1c1animation() {
 		
 
 	}
-	else if (g1c1heading == 1) {//µÚ
+	else if (g1c1heading == 1) {//ë’¤
 		g1c1animationcache = fmod(g1c1animationcache1, 6);
 		if (g1c1animationcache >= 0 && g1c1animationcache < 1) {
 			setObjectImage(g1c1, g1c1animationfileback[0]);
@@ -144,7 +144,7 @@ void g1c1animation() {
 		
 
 	}
-	else if (g1c1heading == 2) {//¿ŞÂÊ
+	else if (g1c1heading == 2) {//ì™¼ìª½
 		g1c1animationcache = fmod(g1c1animationcache1, 10);
 		if (g1c1animationcache >= 0 && g1c1animationcache < 1) {
 			setObjectImage(g1c1, g1c1animationfileleft[0]);
@@ -180,7 +180,7 @@ void g1c1animation() {
 		
 
 	}
-	else if (g1c1heading == 3) {//¿À¸¥ÂÊ
+	else if (g1c1heading == 3) {//ì˜¤ë¥¸ìª½
 		g1c1animationcache = fmod(g1c1animationcache1, 10);
 		if (g1c1animationcache >= 0 && g1c1animationcache < 1) {
 			setObjectImage(g1c1, g1c1animationfileright[0]);
@@ -218,7 +218,7 @@ void g1c1animation() {
 	
 }
 
-void g1obj1firstposition() {// ¸®ÅÏ ÇØÁÖ¾î¾ß ÇÏ³ª?.. i°¡ °¡·Îj°¡ ¼¼·Î
+void g1obj1firstposition() {// ë¦¬í„´ í•´ì£¼ì–´ì•¼ í•˜ë‚˜?.. iê°€ ê°€ë¡œjê°€ ì„¸ë¡œ
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 6; j++) {			
 			obj1x[j][i] =0;
@@ -254,19 +254,19 @@ void g1obj1_1firstposition() {
 		int num = rand();
 		int g1obj1_1place = num % 4;
 		int g1obj1_1placernd = num % 7;
-		if (g1obj1_1place == 0) { //µ¿
+		if (g1obj1_1place == 0) { //ë™
 			obj1_1x[i] = 1281;
 			obj1_1y[i] = 30+50* g1obj1_1placernd;
 		}
-		else if (g1obj1_1place == 1) {//¼­
+		else if (g1obj1_1place == 1) {//ì„œ
 			obj1_1x[i] = -15;
 			obj1_1y[i] = 30 + 50 * g1obj1_1placernd;
 		}
-		else if (g1obj1_1place == 2) {//³²
+		else if (g1obj1_1place == 2) {//ë‚¨
 			obj1_1x[i] = 50 + 150 * g1obj1_1placernd;
 			obj1_1y[i] = -15;
 		}
-		else if (g1obj1_1place == 3) {//ºÏ
+		else if (g1obj1_1place == 3) {//ë¶
 			obj1_1x[i] = 50 + 150 * g1obj1_1placernd;
 			obj1_1y[i] = 721;
 		}
@@ -285,19 +285,19 @@ void g1clearobj() {
 	
 }
 
-void g1obj1movepinpoint() {//Áß¾ÓÀÇ 540*360 ¾ÈÀÇ »ç°¢ÇüÀ» ¹«Á¶°Ç Áö³ª¸é¼­ ÀÌµ¿
+void g1obj1movepinpoint() {//ì¤‘ì•™ì˜ 540*360 ì•ˆì˜ ì‚¬ê°í˜•ì„ ë¬´ì¡°ê±´ ì§€ë‚˜ë©´ì„œ ì´ë™
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 6; j++) {
-			if (obj1x[j][i] == 0 && obj1y[j][i] == 0) {//pass ¿ä°Å´Â °¡ÀåÀÚ¸®¿¡ ÀÖ´Â °Å ¸¸ Æ÷ÀÎÆ®¸¦ Á¤ÇØÁÖ°í ¾ÈÂÊ¿¡ ÀÖ´Â°Å´Â ¹«½Ã
+			if (obj1x[j][i] == 0 && obj1y[j][i] == 0) {//pass ìš”ê±°ëŠ” ê°€ì¥ìë¦¬ì— ìˆëŠ” ê±° ë§Œ í¬ì¸íŠ¸ë¥¼ ì •í•´ì£¼ê³  ì•ˆìª½ì— ìˆëŠ”ê±°ëŠ” ë¬´ì‹œ
 			}
-			else if (obj1x[j][i] > 0 && obj1y[j][i]<720 && obj1x[j][i] < 1280 && obj1y[j][i] > 0) {//È­¸é ¾È¿¡ ÀÖÀ»¶§´Â ÇÒ ÇÊ¿ä ¾øÀ½
+			else if (obj1x[j][i] > 0 && obj1y[j][i]<720 && obj1x[j][i] < 1280 && obj1y[j][i] > 0) {//í™”ë©´ ì•ˆì— ìˆì„ë•ŒëŠ” í•  í•„ìš” ì—†ìŒ
 			}
 			else {
 				
 				int num = rand();
-				int rndvaluex = (num % 18)*30;//°¡·Î 540
-				int rndvaluey = (num % 12)*30;//¼¼·Î 360
+				int rndvaluex = (num % 18)*30;//ê°€ë¡œ 540
+				int rndvaluey = (num % 12)*30;//ì„¸ë¡œ 360
 				double distance;
 				double ratio;
 
@@ -316,8 +316,8 @@ void g1obj1movepinpoint() {//Áß¾ÓÀÇ 540*360 ¾ÈÀÇ »ç°¢ÇüÀ» ¹«Á¶°Ç Áö³ª¸é¼­ ÀÌµ¿
 		else {
 			
 			int num = rand();
-			int rndvaluex = (num % 9) * 60;//°¡·Î 540
-			int rndvaluey = (num % 6) * 60;//¼¼·Î 360
+			int rndvaluex = (num % 9) * 60;//ê°€ë¡œ 540
+			int rndvaluey = (num % 6) * 60;//ì„¸ë¡œ 360
 			double distance;
 			double ratio;
 
@@ -338,10 +338,10 @@ void g1obj1move() {
 				obj1x[j][i] += g1obj1moveblockx[j][i];
 				obj1y[j][i] += g1obj1moveblocky[j][i];
 				if (g1obj1moveblockx[j][i] > 0) {
-					setObjectImage(g1obj1[j][i], "image/game1/ºÎ²ôºÎ²ô/130-1.png");
+					setObjectImage(g1obj1[j][i], "image/game1/ë¶€ë„ë¶€ë„/130-1.png");
 				}
 				else {
-					setObjectImage(g1obj1[j][i], "image/game1/ºÎ²ôºÎ²ô/130+1.png");
+					setObjectImage(g1obj1[j][i], "image/game1/ë¶€ë„ë¶€ë„/130+1.png");
 				}
 			}
 		}
@@ -350,10 +350,10 @@ void g1obj1move() {
 		obj1_1x[i] += g1obj1_1moveblockx[i];
 		obj1_1y[i] += g1obj1_1moveblocky[i];
 		if (g1obj1_1moveblockx[i] > 0) {
-			setObjectImage(g1obj1_1[i], "image/game1/ºÎ²ôºÎ²ô/131-1.png");
+			setObjectImage(g1obj1_1[i], "image/game1/ë¶€ë„ë¶€ë„/131-1.png");
 		}
 		else {
-			setObjectImage(g1obj1_1[i], "image/game1/ºÎ²ôºÎ²ô/131+1.png");
+			setObjectImage(g1obj1_1[i], "image/game1/ë¶€ë„ë¶€ë„/131+1.png");
 		}
 	}
 	
@@ -383,12 +383,12 @@ void score(){
 	g1result = getTimer(g1score);
 	highscore_g1 = 9999 - g1result;
 	char buf[256];
-	//sprintf_s(buf, "¹öÆ¾½Ã°£ : %0.fÃÊ\n", (9999-g1result), scene_g1);
+	//sprintf_s(buf, "ë²„í‹´ì‹œê°„ : %0.fì´ˆ\n", (9999-g1result), scene_g1);
 	//showMessage(buf);
 
 	getCoin = (int)(9999 - g1result) * 2;
 
-	sprintf_s(buf, "%d ÄÚÀÎ È¹µæ!\n", getCoin, scene_g1);
+	sprintf_s(buf, "%d ì½”ì¸ íšë“!\n", getCoin);
 	showMessage(buf);
 
 	coin += getCoin;
@@ -520,8 +520,8 @@ void Game1_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 	}
 		
 
-void Game1_timerCallback(TimerID timer) {// Å©¸®¿¡ÀÌÆ® Å¸ÀÌ¸Ó!!!!!!!!!!!
-	if (timer == g1timer1) {//Àå¾Ö¹°¿òÁ÷ÀÌ´Â°Å Àü¿ë
+void Game1_timerCallback(TimerID timer) {// í¬ë¦¬ì—ì´íŠ¸ íƒ€ì´ë¨¸!!!!!!!!!!!
+	if (timer == g1timer1) {//ì¥ì• ë¬¼ì›€ì§ì´ëŠ”ê±° ì „ìš©
 		
 		setTimer(g1timer1, 0.01f);
 		startTimer(g1timer1);
@@ -531,7 +531,7 @@ void Game1_timerCallback(TimerID timer) {// Å©¸®¿¡ÀÌÆ® Å¸ÀÌ¸Ó!!!!!!!!!!!
 		
 
 	}
-	if (timer == g1c1move) {//Ä³¸¯ÅÍ¿òÁ÷ÀÌ´Â°Å Àü¿ë
+	if (timer == g1c1move) {//ìºë¦­í„°ì›€ì§ì´ëŠ”ê±° ì „ìš©
 	/*else if (g1c1x < 0 - g1_character_size_x + 1 || g1c1x > 1280 || g1c1y < 0 - g1_character_size_y + 1 || g1c1y > 720) {
 		stopTimer(g1timer1);
 		stopTimer(g1c1move);
@@ -554,14 +554,14 @@ void Game1_timerCallback(TimerID timer) {// Å©¸®¿¡ÀÌÆ® Å¸ÀÌ¸Ó!!!!!!!!!!!
 		startTimer(g1c1move);
 		
 	}
-	if (timer == g1levelupgrade) {//Ä³¸¯ÅÍ¿òÁ÷ÀÌ´Â°Å Àü¿ë		
+	if (timer == g1levelupgrade) {//ìºë¦­í„°ì›€ì§ì´ëŠ”ê±° ì „ìš©		
 		startTimer(g1levelupgrade);
 	}
 	if (timer == g1score) {
 		
 	}
 	if (timer == g1difficult) {
-		g1obj1_1[g1difficulty] = g1createObject("image/game1/ºÎ²ôºÎ²ô/131-1.png", scene_g1, obj1_1x[g1difficulty], obj1_1y[g1difficulty], true);
+		g1obj1_1[g1difficulty] = g1createObject("image/game1/ë¶€ë„ë¶€ë„/131-1.png", scene_g1, obj1_1x[g1difficulty], obj1_1y[g1difficulty], true);
 		scaleObject(g1obj1_1[g1difficulty], 0.2f);
 
 		g1difficulty++;
@@ -581,20 +581,20 @@ void Game1_keyboardCallback(KeyCode code, KeyState state)
 {
 	if (nowGameSceneNum == 1) {
 
-		if (code == 84) {			// UP
-			g1dy += (state == KeyState::KEYBOARD_PRESSED ? speed : -speed);
+		if (code == KeyCode::KEY_UP_ARROW) {			// UP
+			g1dy += (state == KeyState::KEY_PRESSED ? speed : -speed);
 			//g1c1heading = 1;
 		}
-		else if (code == 85) {		// DOWN
-			g1dy -= (state == KeyState::KEYBOARD_PRESSED ? speed : -speed);
+		else if (code == KeyCode::KEY_DOWN_ARROW) {		// DOWN
+			g1dy -= (state == KeyState::KEY_PRESSED ? speed : -speed);
 			//g1c1heading = 0;
 		}
-		else if (code == 83) {		// RIGHT
-			g1dx += (state == KeyState::KEYBOARD_PRESSED ? speed : -speed);
+		else if (code == KeyCode::KEY_RIGHT_ARROW) {		// RIGHT
+			g1dx += (state == KeyState::KEY_PRESSED ? speed : -speed);
 			g1c1heading = 3;
 		}
-		else if (code == 82) {		// LEFT
-			g1dx -= (state == KeyState::KEYBOARD_PRESSED ? speed : -speed);
+		else if (code == KeyCode::KEY_LEFT_ARROW) {		// LEFT
+			g1dx -= (state == KeyState::KEY_PRESSED ? speed : -speed);
 			g1c1heading = 2;
 		}
 	}
@@ -609,9 +609,9 @@ void Game1_main() {
 	setGameOption(GameOption::GAME_OPTION_MESSAGE_BOX_BUTTON, false);
 	
 	
-	scene_g1 = createScene("STGAE4 À¯·ÉÀÇ Áı", "image/game1/¹è°æ.png");
+	scene_g1 = createScene("STGAE4 ìœ ë ¹ì˜ ì§‘", "image/game1/ë°°ê²½.png");
 
-	g1c1 = g1createObject("image/game1/¸¶¸®¿À¿À¸¥ÂÊ/¸¶¸®¿À ¾Ö´Ï¸ŞÀÌ¼Ç1.png", scene_g1, g1c1x, g1c1y, true);	
+	g1c1 = g1createObject("image/game1/ë§ˆë¦¬ì˜¤ì˜¤ë¥¸ìª½/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜1.png", scene_g1, g1c1x, g1c1y, true);	
 	scaleObject(g1c1, 0.5f);
 	
 	
@@ -624,7 +624,7 @@ void Game1_main() {
 
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 6; j++) {
-			g1obj1[j][i] = g1createObject("image/game1/ºÎ²ôºÎ²ô/130-1.png", scene_g1, obj1x[j][i], obj1y[j][i], true);
+			g1obj1[j][i] = g1createObject("image/game1/ë¶€ë„ë¶€ë„/130-1.png", scene_g1, obj1x[j][i], obj1y[j][i], true);
 			scaleObject(g1obj1[j][i], 0.2f);
 		}
 	}
@@ -635,6 +635,6 @@ void Game1_main() {
 	g1c1move = createTimer(0.01f);
 	g1score = createTimer(100);
 	g1difficult = createTimer(4.f);
-	bgm_g1 = createSound("sounds/¹è°æÀ½/À¯·ÉÀÇÁı.mp3");
-	g1deadsound = createSound("sounds/°øÅë/Á×À»¶§.mp3");
+	bgm_g1 = createSound("sounds/ë°°ê²½ìŒ/ìœ ë ¹ì˜ì§‘.mp3");
+	g1deadsound = createSound("sounds/ê³µí†µ/ì£½ì„ë•Œ.mp3");
 }

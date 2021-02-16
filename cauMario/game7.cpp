@@ -1,4 +1,4 @@
-#include<bangtal.h>
+﻿#include<bangtal.h>
 #include <iostream>
 #include<math.h>
 #include<stdio.h>
@@ -59,7 +59,7 @@ void Game7_main() {
 
 
     scene_g7 = createScene("game7", "image/game7/background.png");
-    g7jumpbutton = g7createObject("image/game7/Ȯ��.png", scene_g7, 800, 110, true);
+    g7jumpbutton = g7createObject("image/game7/확인.png", scene_g7, 800, 110, true);
    
     g7c1 = g7createObject("image/game4/c1.png", scene_g7, 210, 210, true);
   

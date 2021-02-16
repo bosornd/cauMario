@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include<bangtal.h>
 #include <stdio.h>
 
@@ -21,14 +21,14 @@ int IconY[6] = { 115,385,215,565,275,465 };
 
 bool stageLocked[6] = { 0,1,0,1,1,1 };
 bool stageBlack[6] = { 0,0,1,1,1,0 };		//0,0,1,1,1,0
-int stageUnlockCost[6] = { 0, 30, 0,30,150,0 };	//6¹øÂ° : ¿­¼è 2°³ ÇÊ¿ä
-int coin; //Á¡¼ö  ÄÚÀÎ°³¼ö
+int stageUnlockCost[6] = { 0, 30, 0,30,150,0 };	//6ë²ˆì§¸ : ì—´ì‡  2ê°œ í•„ìš”
+int coin; //ì ìˆ˜  ì½”ì¸ê°œìˆ˜
 int key;
 
 int coinNum100, coinNum10, coinNum1;
 
 int nowMarioOn = 0;
-int nowGameSceneNum = 0;	//0Àº Å¸ÀÌÆ²
+int nowGameSceneNum = 0;	//0ì€ íƒ€ì´í‹€
 int nowGame6Stage = 1;
 extern bool stage2Clear, stage5Clear;
 
@@ -36,8 +36,8 @@ char path[256];
 
 int marioAnimationCount = 0;
 const char* marioAnimationImage[9] =
-{ "image/Title/¸¶¸®¿À¾Ö´Ï/1.png","image/Title/¸¶¸®¿À¾Ö´Ï/2.png","image/Title/¸¶¸®¿À¾Ö´Ï/3.png","image/Title/¸¶¸®¿À¾Ö´Ï/4.png",
-"image/Title/¸¶¸®¿À¾Ö´Ï/5.png","image/Title/¸¶¸®¿À¾Ö´Ï/6.png","image/Title/¸¶¸®¿À¾Ö´Ï/7.png","image/Title/¸¶¸®¿À¾Ö´Ï/8.png","image/Title/¸¶¸®¿À¾Ö´Ï/9.png" };
+{ "image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/1.png","image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/2.png","image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/3.png","image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/4.png",
+"image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/5.png","image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/6.png","image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/7.png","image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/8.png","image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/9.png" };
 
 int titleanimationx = 0;
 
@@ -75,7 +75,7 @@ int savedata() {
 
 	}
 
-	fwrite(&Data, sizeof(Data), 1, fp); // SaveData_t±¸Á¶Ã¼ ³»¿ëÀ» Ãâ·Â
+	fwrite(&Data, sizeof(Data), 1, fp); // SaveData_têµ¬ì¡°ì²´ ë‚´ìš©ì„ ì¶œë ¥
 
 	fclose(fp);
 
@@ -132,26 +132,26 @@ void showCoinCount() {
 	coinNum1 = coin - coinNum10 * 10 - coinNum100 * 100;
 
 
-	if (coin >= 100) {	//3ÀÚ¸® ¼ıÀÚ¸é
-		sprintf(path, "image/Title/¼ıÀÚ/%d.png", coinNum100);	//¹éÀÇ ÀÚ¸®
+	if (coin >= 100) {	//3ìë¦¬ ìˆ«ìë©´
+		sprintf(path, "image/Title/ìˆ«ì/%d.png", coinNum100);	//ë°±ì˜ ìë¦¬
 		setObjectImage(coinText[0], path);
 		showObject(coinText[0]);
 
-		sprintf(path, "image/Title/¼ıÀÚ/%d.png", coinNum10);	//½ÊÀÇ ÀÚ¸®
+		sprintf(path, "image/Title/ìˆ«ì/%d.png", coinNum10);	//ì‹­ì˜ ìë¦¬
 		setObjectImage(coinText[1], path);
 		showObject(coinText[1]);
 
-		sprintf(path, "image/Title/¼ıÀÚ/%d.png", coinNum1);	//ÀÏÀÇ ÀÚ¸®
+		sprintf(path, "image/Title/ìˆ«ì/%d.png", coinNum1);	//ì¼ì˜ ìë¦¬
 		setObjectImage(coinText[2], path);
 		showObject(coinText[2]);
 	}
 
-	else if (coin >= 10) {	//2ÀÚ¸® ¼ıÀÚ¸é
-		sprintf(path, "image/Title/¼ıÀÚ/%d.png", coinNum10);	//½ÊÀÇ ÀÚ¸®
+	else if (coin >= 10) {	//2ìë¦¬ ìˆ«ìë©´
+		sprintf(path, "image/Title/ìˆ«ì/%d.png", coinNum10);	//ì‹­ì˜ ìë¦¬
 		setObjectImage(coinText[0], path);
 		showObject(coinText[0]);
 
-		sprintf(path, "image/Title/¼ıÀÚ/%d.png", coinNum1);	//ÀÏÀÇ ÀÚ¸®
+		sprintf(path, "image/Title/ìˆ«ì/%d.png", coinNum1);	//ì¼ì˜ ìë¦¬
 		setObjectImage(coinText[1], path);
 		showObject(coinText[1]);
 
@@ -159,7 +159,7 @@ void showCoinCount() {
 	}
 
 	else {
-		sprintf(path, "image/Title/¼ıÀÚ/%d.png", coinNum1);	//ÀÏÀÇ ÀÚ¸®
+		sprintf(path, "image/Title/ìˆ«ì/%d.png", coinNum1);	//ì¼ì˜ ìë¦¬
 		setObjectImage(coinText[0], path);
 		showObject(coinText[0]);
 
@@ -184,7 +184,7 @@ void hideUI() {
 	}
 }
 
-//0Àº Å¬¸®¾îx 2½ºÅ×ÀÌÁö(»ç¸·), 5½ºÅ×ÀÌÁö(ÇÏ´Ã) ¹ŞÀ½ 
+//0ì€ í´ë¦¬ì–´x 2ìŠ¤í…Œì´ì§€(ì‚¬ë§‰), 5ìŠ¤í…Œì´ì§€(í•˜ëŠ˜) ë°›ìŒ 
 void enterTitle(int clearScene) {
 
 	setGameOption(GameOption::GAME_OPTION_ROOM_TITLE, false);
@@ -196,11 +196,11 @@ void enterTitle(int clearScene) {
 
 	playSound(bgm_title);
 
-	//»ç¸·Áö´ë Å¬¸®¾îÇßÀ¸¸é
+	//ì‚¬ë§‰ì§€ëŒ€ í´ë¦¬ì–´í–ˆìœ¼ë©´
 	if (clearScene == 2) {
-		setObjectImage(GameIcon[1], "image/Title/ÃÊ·Ï¾ÆÀÌÄÜ.png");
-		setObjectImage(GameIcon[2], "image/Title/ÆÄ¶õ¾ÆÀÌÄÜ.png");
-		setObjectImage(GameIcon[3], "image/Title/ÆÄ¶õ¾ÆÀÌÄÜ.png");
+		setObjectImage(GameIcon[1], "image/Title/ì´ˆë¡ì•„ì´ì½˜.png");
+		setObjectImage(GameIcon[2], "image/Title/íŒŒë€ì•„ì´ì½˜.png");
+		setObjectImage(GameIcon[3], "image/Title/íŒŒë€ì•„ì´ì½˜.png");
 		stageBlack[2] = false;
 		stageBlack[3] = false;
 
@@ -208,9 +208,9 @@ void enterTitle(int clearScene) {
 		setObjectImage(key1, "image/Title/key.png");
 	}
 
-	//ÇÏ´ÃÁö´ë Å¬¸®¾îÇßÀ¸¸é
+	//í•˜ëŠ˜ì§€ëŒ€ í´ë¦¬ì–´í–ˆìœ¼ë©´
 	else if (clearScene == 5) {
-		setObjectImage(GameIcon[4], "image/Title/ÃÊ·Ï¾ÆÀÌÄÜ.png");
+		setObjectImage(GameIcon[4], "image/Title/ì´ˆë¡ì•„ì´ì½˜.png");
 
 		key = 2;
 		setObjectImage(key2, "image/Title/key.png");
@@ -219,17 +219,17 @@ void enterTitle(int clearScene) {
 	enterScene(titleScene);
 }
 
-//0¹ø 2¹øÀº ½ÇÇà ¾ÈµÊ
+//0ë²ˆ 2ë²ˆì€ ì‹¤í–‰ ì•ˆë¨
 void stageUnlock(int stage) {
 
 	if (stage != 5) {
 		if (coin >= stageUnlockCost[stage]) {
 
-			coin -= stageUnlockCost[stage];		//µ· ³»°í
+			coin -= stageUnlockCost[stage];		//ëˆ ë‚´ê³ 
 			showCoinCount();
-			stageLocked[stage] = false;			//¿­¸²À¸·Î ¹Ù²ãÁÖ°í
+			stageLocked[stage] = false;			//ì—´ë¦¼ìœ¼ë¡œ ë°”ê¿”ì£¼ê³ 
 
-			sprintf(path, "image/Title/ÆË¾÷/%d-2.png", stage + 1);
+			sprintf(path, "image/Title/íŒì—…/%d-2.png", stage + 1);
 			setObjectImage(GamePopup[stage], path);
 			setObjectImage(GameEnterButton[stage], "image/Title/enter.png");
 			locateObject(GameEnterButton[stage], titleScene, 950, 100);
@@ -240,29 +240,29 @@ void stageUnlock(int stage) {
 		}
 
 		else
-			showMessage("µ·ÀÌ ºÎÁ·ÇÕ´Ï´Ù");
+			showMessage("ëˆì´ ë¶€ì¡±í•©ë‹ˆë‹¤");
 	}
 
-	//ÄíÆÄ¼º
+	//ì¿ íŒŒì„±
 	else {
 		if (key == 2) {
 
 			stageLocked[5] = false;
 
-			setObjectImage(GamePopup[5], "image/Title/ÆË¾÷/6-2.png");
+			setObjectImage(GamePopup[5], "image/Title/íŒì—…/6-2.png");
 			setObjectImage(GameEnterButton[5], "image/Title/enter.png");
 			locateObject(GameEnterButton[stage], titleScene, 70, 100);
 		}
 
 		else
-			showMessage("¿­¼è°¡ ºÎÁ·ÇÕ´Ï´Ù");
+			showMessage("ì—´ì‡ ê°€ ë¶€ì¡±í•©ë‹ˆë‹¤");
 	}
 }
 
 void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 
 
-	//°ËÀº¾ÆÀÌÄÜ(Å¬¸¯ºÒ°¡)ÀÌ ¾Æ´Ï¸é ÆË¾÷Ã¢ ¶ç¿ò
+	//ê²€ì€ì•„ì´ì½˜(í´ë¦­ë¶ˆê°€)ì´ ì•„ë‹ˆë©´ íŒì—…ì°½ ë„ì›€
 	for (int i = 0; i < 6; i++) {
 
 		if (object == GameIcon[i] && stageBlack[i] == false) {
@@ -279,16 +279,16 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 			playSound(buttonClickSound);
 
 			if(i == 2|| i == 3){
-				showMessage("2 ½ºÅ×ÀÌÁö¸¦ Å¬¸®¾î ÇØÁÖ¼¼¿ä");
+				showMessage("2 ìŠ¤í…Œì´ì§€ë¥¼ í´ë¦¬ì–´ í•´ì£¼ì„¸ìš”");
 			}
 			
 			else if (i == 4) {
-				showMessage("4 ½ºÅ×ÀÌÁö¸¦ ¾ğ¶ô ÇØÁÖ¼¼¿ä");
+				showMessage("4 ìŠ¤í…Œì´ì§€ë¥¼ ì–¸ë½ í•´ì£¼ì„¸ìš”");
 			}		
 		}
 	}
 
-	////ÆË¾÷Ã¢ Å¬¸¯½Ã »ç¶óÁü//////
+	////íŒì—…ì°½ í´ë¦­ì‹œ ì‚¬ë¼ì§//////
 	for (int i = 0; i < 6; i++) {
 		if (object == GamePopup[i]) {
 			playSound(buttonClickSound);
@@ -308,8 +308,8 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 	}
 
 
-	///////°ÔÀÓ ÀÔÀå ¹öÆ°//////
-	//Æò¿ø
+	///////ê²Œì„ ì…ì¥ ë²„íŠ¼//////
+	//í‰ì›
 	else if (object == GameEnterButton[0]) {
 		nowGameSceneNum = 3;
 
@@ -322,17 +322,17 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 		enterScene(scene1_g3);
 	}
 
-	//»ç¸·
+	//ì‚¬ë§‰
 	else if (object == GameEnterButton[1]) {
 
 		playSound(buttonClickSound);
 
-		//Àá°ÜÀÖÀ¸¸é ÇØ±İ
+		//ì ê²¨ìˆìœ¼ë©´ í•´ê¸ˆ
 		if (stageLocked[1]) {
 			stageUnlock(1);
 		}
 
-		//¿­·ÁÀÖÀ¸¸é ÀÌµ¿
+		//ì—´ë ¤ìˆìœ¼ë©´ ì´ë™
 		else {
 			if (stage2Clear == false) {
 				nowGameSceneNum = 4;
@@ -346,11 +346,11 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 			}
 
 			else
-				showMessage("ÀÌ¹Ì Å¬¸®¾î ÇÑ ½ºÅ×ÀÌÁöÀÔ´Ï´Ù");
+				showMessage("ì´ë¯¸ í´ë¦¬ì–´ í•œ ìŠ¤í…Œì´ì§€ì…ë‹ˆë‹¤");
 		}
 	}
 
-	//¹Ù´Ù (¹Ù·Î ÀÔÀå°¡´É)
+	//ë°”ë‹¤ (ë°”ë¡œ ì…ì¥ê°€ëŠ¥)
 	else if (object == GameEnterButton[2]) {
 
 
@@ -366,7 +366,7 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 
 	}
 
-	//±Í½ÅÀÇÁı
+	//ê·€ì‹ ì˜ì§‘
 	else if (object == GameEnterButton[3]) {
 
 		playSound(buttonClickSound);
@@ -374,9 +374,9 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 		if (stageLocked[3]) {
 			stageUnlock(3);
 
-			if (stageLocked[3] == false) {	//¿­·ÈÀ¸¸é
+			if (stageLocked[3] == false) {	//ì—´ë ¸ìœ¼ë©´
 				stageBlack[4] = false;
-				setObjectImage(GameIcon[4], "image/Title/»¡°£¾ÆÀÌÄÜ.png");
+				setObjectImage(GameIcon[4], "image/Title/ë¹¨ê°„ì•„ì´ì½˜.png");
 			}
 		}
 
@@ -392,7 +392,7 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 		}
 	}
 
-	//ÇÏ´Ã¼¶
+	//í•˜ëŠ˜ì„¬
 	else if (object == GameEnterButton[4]) {
 
 		playSound(buttonClickSound);
@@ -425,12 +425,12 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 				}
 			}
 			else
-				showMessage("ÀÌ¹Ì Å¬¸®¾î ÇÑ ½ºÅ×ÀÌÁöÀÔ´Ï´Ù");
+				showMessage("ì´ë¯¸ í´ë¦¬ì–´ í•œ ìŠ¤í…Œì´ì§€ì…ë‹ˆë‹¤");
 		}
 
 	}
 
-	//ÄíÆÄ¼º
+	//ì¿ íŒŒì„±
 	else if (object == GameEnterButton[5]) {
 
 		playSound(buttonClickSound);
@@ -460,7 +460,7 @@ void Title_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 	else if (object == savebutton) {
 		playSound(buttonClickSound);
 		savedata();
-		showMessage("ÀúÀå ¿Ï·á!");
+		showMessage("ì €ì¥ ì™„ë£Œ!");
 	}
 	else if (object == explainbutton) {
 		playSound(buttonClickSound);
@@ -501,42 +501,42 @@ void Title_soundCallback(SoundID sound) {
 void Title_main() {
 
 	readdata();
-	titleScene = createScene("ÀüÃ¼ ¸Ê", "image/Title/worldmap.png");
+	titleScene = createScene("ì „ì²´ ë§µ", "image/Title/worldmap.png");
 
-	//-------°ÔÀÓ ¹öÆ°
+	//-------ê²Œì„ ë²„íŠ¼
 	for (int i = 0; i < 6; i++)
-		GameIcon[i] = createObject("image/Title/°ËÀº¾ÆÀÌÄÜ.png", titleScene, IconX[i] + 10, IconY[i] - 15, true, 1.0f);
+		GameIcon[i] = createObject("image/Title/ê²€ì€ì•„ì´ì½˜.png", titleScene, IconX[i] + 10, IconY[i] - 15, true, 1.0f);
 
-	setObjectImage(GameIcon[0], "image/Title/ÆÄ¶õ¾ÆÀÌÄÜ.png");
-	setObjectImage(GameIcon[1], "image/Title/»¡°£¾ÆÀÌÄÜ.png");
-	setObjectImage(GameIcon[5], "image/Title/»¡°£¾ÆÀÌÄÜ.png");
+	setObjectImage(GameIcon[0], "image/Title/íŒŒë€ì•„ì´ì½˜.png");
+	setObjectImage(GameIcon[1], "image/Title/ë¹¨ê°„ì•„ì´ì½˜.png");
+	setObjectImage(GameIcon[5], "image/Title/ë¹¨ê°„ì•„ì´ì½˜.png");
 
 
-	//---------°ÔÀÓ¹öÆ°³¡
+	//---------ê²Œì„ë²„íŠ¼ë
 
-	Mario = createObject("image/Title/¸¶¸®¿À¾Ö´Ï/1.png", titleScene, IconX[0], IconY[0], true, 1.4f);
+	Mario = createObject("image/Title/ë§ˆë¦¬ì˜¤ì• ë‹ˆ/1.png", titleScene, IconX[0], IconY[0], true, 1.4f);
 
 	key1 = createObject("image/Title/noKey.png", titleScene, 250, 650, true, 1.0f);
 	key2 = createObject("image/Title/noKey.png", titleScene, 300, 650, true, 1.0f);
 
 
 	coinImage = createObject("image/Title/coin.png", titleScene, 5, 637, true, 1.0f);
-	xText = createObject("image/Title/¼ıÀÚ/x.png", titleScene, 50, 630, true, 1.0f);
+	xText = createObject("image/Title/ìˆ«ì/x.png", titleScene, 50, 630, true, 1.0f);
 
 	for (int i = 0; i < 3; i++) {
-		coinText[i] = createObject("image/Title/¼ıÀÚ/2.png", titleScene, 90 + 30 * i, 630, false, 1.0f);
+		coinText[i] = createObject("image/Title/ìˆ«ì/2.png", titleScene, 90 + 30 * i, 630, false, 1.0f);
 	}
 
 	savebutton = createObject("image/Title/save.png", titleScene, 1050, 650, true, 1.0f);
 	explainbutton = createObject("image/Title/howto.png", titleScene, 1000, 20, true, 0.9f);
-	explainwindow = createObject("image/Title/¼³¸í¼­.png", titleScene, 50, 50, false, 0.6f);
+	explainwindow = createObject("image/Title/ì„¤ëª…ì„œ.png", titleScene, 50, 50, false, 0.6f);
 
-	GamePopup[0] = createObject("image/Title/ÆË¾÷/1.png", titleScene, 884, 0, false, 1.0f);
-	GamePopup[1] = createObject("image/Title/ÆË¾÷/2.png", titleScene, 884, 0, false, 1.0f);
-	GamePopup[2] = createObject("image/Title/ÆË¾÷/3.png", titleScene, 884, 0, false, 1.0f);
-	GamePopup[3] = createObject("image/Title/ÆË¾÷/4.png", titleScene, 884, 0, false, 1.0f);
-	GamePopup[4] = createObject("image/Title/ÆË¾÷/5.png", titleScene, 0, 0, false, 1.0f);
-	GamePopup[5] = createObject("image/Title/ÆË¾÷/6.png", titleScene, 0, 0, false, 1.0f);
+	GamePopup[0] = createObject("image/Title/íŒì—…/1.png", titleScene, 884, 0, false, 1.0f);
+	GamePopup[1] = createObject("image/Title/íŒì—…/2.png", titleScene, 884, 0, false, 1.0f);
+	GamePopup[2] = createObject("image/Title/íŒì—…/3.png", titleScene, 884, 0, false, 1.0f);
+	GamePopup[3] = createObject("image/Title/íŒì—…/4.png", titleScene, 884, 0, false, 1.0f);
+	GamePopup[4] = createObject("image/Title/íŒì—…/5.png", titleScene, 0, 0, false, 1.0f);
+	GamePopup[5] = createObject("image/Title/íŒì—…/6.png", titleScene, 0, 0, false, 1.0f);
 
 	GameEnterButton[0] = createObject("image/Title/enter.png", titleScene, 950, 100, false, 1.0f);
 	GameEnterButton[1] = createObject("image/Title/unlock.png", titleScene, 950, 70, false, 1.0f);
@@ -550,7 +550,7 @@ void Title_main() {
 		enterTitle(2);
 	}
 
-	//ÇÏ´ÃÁö´ë Å¬¸®¾îÇßÀ¸¸é
+	//í•˜ëŠ˜ì§€ëŒ€ í´ë¦¬ì–´í–ˆìœ¼ë©´
 	else if (stage5Clear == true) {
 		enterTitle(5);
 	}
@@ -560,13 +560,13 @@ void Title_main() {
 		if (i != 0 && i != 2) {
 
 			if (stageLocked[i] == false) {
-				sprintf(path, "image/Title/ÆË¾÷/%d-2.png", i + 1);
+				sprintf(path, "image/Title/íŒì—…/%d-2.png", i + 1);
 				setObjectImage(GamePopup[i], path);
 				setObjectImage(GameEnterButton[i], "image/Title/enter.png");
 				locateObject(GameEnterButton[i], titleScene, 950, 100);
 
 				if (i == 3) {
-					setObjectImage(GameIcon[4], "image/Title/»¡°£¾ÆÀÌÄÜ.png");
+					setObjectImage(GameIcon[4], "image/Title/ë¹¨ê°„ì•„ì´ì½˜.png");
 				}
 
 				if (i == 4 || i == 5)
@@ -582,7 +582,7 @@ void Title_main() {
 	titleanimationtimer = createTimer(0.01f);
 	startTimer(marioAnimationTimer);
 
-	bgm_title = createSound("sounds/¹è°æÀ½/¸ŞÀÎ¸Ê.mp3");
+	bgm_title = createSound("sounds/ë°°ê²½ìŒ/ë©”ì¸ë§µ.mp3");
 	playSound(bgm_title, true);
 
 

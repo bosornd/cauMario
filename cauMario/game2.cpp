@@ -1,4 +1,4 @@
-#include <bangtal.h>
+ï»¿#include <bangtal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -31,7 +31,7 @@ ObjectID createObject_g2(const char* image, SceneID scene, int x, int y, bool sh
 	return object;
 }
 
-void normalHitPlay_g2() {		// ÆòÅ¸ È¿°úÀ½ Àç»ı
+void normalHitPlay_g2() {		// í‰íƒ€ íš¨ê³¼ìŒ ì¬ìƒ
 	switch (NhitCount_g2) {
 	case 0:
 		playSound(normalHit_g2, false);
@@ -64,7 +64,7 @@ int overlapCheck_g2(int x, int num) {
 	return 0;
 }
 
-void locationMaker_g2(int num) {		// Ç¥Àû À§Ä¡ ÀúÀåÇÒ Á¤¼ö ¹è¿­ ¸¸µé±â (Ç¥Àû °³¼ö ÀÔ·Â)
+void locationMaker_g2(int num) {		// í‘œì  ìœ„ì¹˜ ì €ì¥í•  ì •ìˆ˜ ë°°ì—´ ë§Œë“¤ê¸° (í‘œì  ê°œìˆ˜ ì…ë ¥)
 
 	int i, x, y, temp;
 
@@ -103,13 +103,13 @@ void clearing_g2() {
 	startTimer(appear);
 }
 
-void ending_g2() {		// °ÔÀÓ Á¾·á
+void ending_g2() {		// ê²Œì„ ì¢…ë£Œ
 
-	for (int j = 0; j < targetNum; j++) {	// ´Ù ¾´ Å¸ÄÏ Ä¡¿ì±â
+	for (int j = 0; j < targetNum; j++) {	// ë‹¤ ì“´ íƒ€ì¼“ ì¹˜ìš°ê¸°
 		hideObject(target[j]);
 	}
 
-	sprintf_s(info_g2, "%d ÄÚÀÎ È¹µæ!", score_g2);
+	sprintf_s(info_g2, "%d ì½”ì¸ íšë“!", score_g2);
 	showMessage(info_g2);
 
 	coin += score_g2;
@@ -119,7 +119,7 @@ void ending_g2() {		// °ÔÀÓ Á¾·á
 
 }
 
-void minusHeart_g2() {			// ¿À´ä ½Ã ¸ñ¼û °¨¼Ò
+void minusHeart_g2() {			// ì˜¤ë‹µ ì‹œ ëª©ìˆ¨ ê°ì†Œ
 	life_g2--;
 	playSound(fail_g2);
 	if (life_g2 == 2) hideObject(heart3_g2);
@@ -150,17 +150,17 @@ void judge_g2(ObjectID object, int i) {
 			setTimer(hitting, 0.5f);
 			startTimer(hitting);
 
-			if (clear_g2 == targetNum) {		// ½ºÅ×ÀÌÁö¸¶´Ù ³­ÀÌµµ »ó½Â Á¶°Çµé
+			if (clear_g2 == targetNum) {		// ìŠ¤í…Œì´ì§€ë§ˆë‹¤ ë‚œì´ë„ ìƒìŠ¹ ì¡°ê±´ë“¤
 
-				for (int j = 0; j < targetNum; j++) {	// ´Ù ¾´ Å¸ÄÏ Ä¡¿ì±â
+				for (int j = 0; j < targetNum; j++) {	// ë‹¤ ì“´ íƒ€ì¼“ ì¹˜ìš°ê¸°
 					hideObject(target[j]);
 				}
 
-				if (targetNum < 7) {	// Å¸°Ù ¼ö Áõ°¡ (ÃÖ´ë 7°³)
+				if (targetNum < 7) {	// íƒ€ê²Ÿ ìˆ˜ ì¦ê°€ (ìµœëŒ€ 7ê°œ)
 					targetNum++;
 				}
 
-				if (duration_g2 > 0.5f) {	// Å¸°Ù µîÀå ÁÖ±â °¨¼Ò (ÃÖ¼Ò 0.5ÃÊ)
+				if (duration_g2 > 0.5f) {	// íƒ€ê²Ÿ ë“±ì¥ ì£¼ê¸° ê°ì†Œ (ìµœì†Œ 0.5ì´ˆ)
 					duration_g2 -= 0.05f;
 				}
 
@@ -241,7 +241,7 @@ void Game2_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 
 		enterTitle(0);
 	}
-	else {											// ¹«½¼ Å¸ÄÏÀ» Å¬¸¯Çß´ÂÁö °Ë»ç
+	else {											// ë¬´ìŠ¨ íƒ€ì¼“ì„ í´ë¦­í–ˆëŠ”ì§€ ê²€ì‚¬
 		for (int i = 0; i < targetNum; i++) {
 			judge_g2(object, i);
 		}
@@ -276,11 +276,11 @@ void Game2_timerCallback(TimerID timer) {
 }
 void Game2_main() {
 
-	scene1_g2 = createScene("STAGE3 ¹Ù´Ù", "image/game2/¹è°æ.png");
-	scene2_g2 = createScene("STAGE3 ¹Ù´Ù", "image/game2/¹è°æ1.png");
+	scene1_g2 = createScene("STAGE3 ë°”ë‹¤", "image/game2/ë°°ê²½.png");
+	scene2_g2 = createScene("STAGE3 ë°”ë‹¤", "image/game2/ë°°ê²½1.png");
 
-	startbutton_g2 = createObject_g2("image/game2/½ÃÀÛ.png", scene1_g2, 530, 350, true);
-	restartbutton_g2 = createObject_g2("image/game2/´Ù½Ã½ÃÀÛ.png", scene2_g2, 500, 350, false);
+	startbutton_g2 = createObject_g2("image/game2/ì‹œì‘.png", scene1_g2, 530, 350, true);
+	restartbutton_g2 = createObject_g2("image/game2/ë‹¤ì‹œì‹œì‘.png", scene2_g2, 500, 350, false);
 	endbutton_g2 = createObject_g2("image/game2/goMap.png", scene2_g2, 10, 10, false);
 	scaleObject(endbutton_g2, 1.3f);
 
@@ -294,13 +294,13 @@ void Game2_main() {
 	heart3_g2 = createObject_g2("image/game2/heart.png", scene2_g2, 970, 650, true);
 	scaleObject(heart3_g2, 0.05f);
 
-	bgm_g2 = createSound("sounds/¹è°æÀ½/¹Ù´Ù.mp3");
+	bgm_g2 = createSound("sounds/ë°°ê²½ìŒ/ë°”ë‹¤.mp3");
 	normalHit_g2 = createSound("image/game2/normalHit.mp3");
 	normalHit1_g2 = createSound("image/game2/normalHit1.mp3");
 	normalHit2_g2 = createSound("image/game2/normalHit2.mp3");
 	normalHit3_g2 = createSound("image/game2/normalHit3.mp3");
 	normalHit4_g2 = createSound("image/game2/normalHit4.mp3");
-	fail_g2 = createSound("sounds/°øÅë/¿À´ä.mp3");
+	fail_g2 = createSound("sounds/ê³µí†µ/ì˜¤ë‹µ.mp3");
 
 	appear = createTimer(duration_g2);
 	hitting = createTimer(0.5f);

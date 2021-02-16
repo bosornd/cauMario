@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+ï»¿#define _CRT_SECURE_NO_WARNINGS
 #include<bangtal.h>
 
 extern SceneID titleScene, endingScene;
@@ -147,10 +147,10 @@ int main() {
 	Ending_main();
 
 
-	buttonClickSound = createSound("sounds/°øÅë/±âº»¹öÆ°Å¬¸¯.wav");
-	gameClearSound = createSound("sounds/°øÅë/°ÔÀÓÅ¬¸®¾î.wav");
-	gameOverSound = createSound("sounds/°øÅë/°ÔÀÓ¿À¹ö.wav");
-	gameEnterSound = createSound("sounds/°øÅë/°ÔÀÓÀÔÀå.wav");
+	buttonClickSound = createSound("sounds/ê³µí†µ/ê¸°ë³¸ë²„íŠ¼í´ë¦­.wav");
+	gameClearSound = createSound("sounds/ê³µí†µ/ê²Œì„í´ë¦¬ì–´.wav");
+	gameOverSound = createSound("sounds/ê³µí†µ/ê²Œì„ì˜¤ë²„.wav");
+	gameEnterSound = createSound("sounds/ê³µí†µ/ê²Œì„ì…ì¥.wav");
 
 	
 	startGame(titleScene);

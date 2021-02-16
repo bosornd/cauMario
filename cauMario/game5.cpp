@@ -1,4 +1,4 @@
-#include <bangtal.h>
+ï»¿#include <bangtal.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -48,12 +48,12 @@ int koopaX = 900, koopaY = playerY_g5;
 int koopaCount = 0;
 int koopaHP = 500;
 
-//¸¶¸®¿À ºÒ °ø°Ý
+//ë§ˆë¦¬ì˜¤ ë¶ˆ ê³µê²©
 int fire1X[4], fire1Y, fire2X[4], fire2Y;
 int fire1Num = 0, fire2Num = 0;
 bool attacking1 = false, attacking2 = false;
 
-//ÄíÆÄ ºÒ °ø°Ý
+//ì¿ íŒŒ ë¶ˆ ê³µê²©
 int kFire1X, kFire1Y;
 int kFire2X, kFire2Y;
 int kBallX, kBallY;
@@ -63,19 +63,19 @@ bool kBallisRising;
 bool koopaisRising, koopaisLanded;
 
 
-//Ä³¸¯ÅÍ ¾Ö´Ï
+//ìºë¦­í„° ì• ë‹ˆ
 const char* playerAnimationImage[10] =
-{ "image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç1.png","image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç2.png","image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç3.png","image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç4.png",
-"image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç5.png","image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç6.png" ,"image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç7.png" ,"image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç8.png"
-,"image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç9.png" ,"image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç10.png" };
+{ "image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜1.png","image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜2.png","image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜3.png","image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜4.png",
+"image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜5.png","image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜6.png" ,"image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜7.png" ,"image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜8.png"
+,"image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜9.png" ,"image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜10.png" };
 
 const char* setKoopaAnimationImage[7] =
-{ "image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç1.png","image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç2.png","image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç3.png","image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç4.png",
-"image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç5.png","image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç6.png" ,"image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç7.png" };
+{ "image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜1.png","image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜2.png","image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜3.png","image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜4.png",
+"image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜5.png","image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜6.png" ,"image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜7.png" };
 
 const char* setKoopaDamageAnimationImage[7] =
-{ "image/game5/¸ÂÀºÄíÆÄ/¸ÂÀºÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç1.png","image/game5/¸ÂÀºÄíÆÄ/¸ÂÀºÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç2.png","image/game5/¸ÂÀºÄíÆÄ/¸ÂÀºÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç3.png","image/game5/¸ÂÀºÄíÆÄ/¸ÂÀºÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç4.png",
-"image/game5/¸ÂÀºÄíÆÄ/¸ÂÀºÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç5.png","image/game5/¸ÂÀºÄíÆÄ/¸ÂÀºÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç6.png" ,"image/game5/¸ÂÀºÄíÆÄ/¸ÂÀºÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç7.png" };
+{ "image/game5/ë§žì€ì¿ íŒŒ/ë§žì€ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜1.png","image/game5/ë§žì€ì¿ íŒŒ/ë§žì€ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜2.png","image/game5/ë§žì€ì¿ íŒŒ/ë§žì€ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜3.png","image/game5/ë§žì€ì¿ íŒŒ/ë§žì€ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜4.png",
+"image/game5/ë§žì€ì¿ íŒŒ/ë§žì€ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜5.png","image/game5/ë§žì€ì¿ íŒŒ/ë§žì€ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜6.png" ,"image/game5/ë§žì€ì¿ íŒŒ/ë§žì€ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜7.png" };
 
 const char* koopaAnimationImage[7];
 
@@ -112,11 +112,11 @@ void restart_g5() {
         showObject(playerHP[i]);
     }
     
-    setObjectImage(player_g5, "image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç1.png");
+    setObjectImage(player_g5, "image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜1.png");
     locateObject(player_g5,scene_g5, playerX_g5, playerBottom);
     showObject(player_g5);
     
-    setObjectImage(koopa, "image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç1.png");
+    setObjectImage(koopa, "image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜1.png");
     locateObject(koopa, scene_g5, koopaX, koopaY);
     showObject(koopa);
 
@@ -135,14 +135,14 @@ void gameClear_g5() {
     stopSound(bgm_g5);
     playSound(gameClearSound);
 
-    showMessage("ÄíÆÄ¸¦ ¹°¸®ÃÆ½À´Ï´Ù!");
+    showMessage("ì¿ íŒŒë¥¼ ë¬¼ë¦¬ì³¤ìŠµë‹ˆë‹¤!");
     stage6Clear = true;
     setObjectImage(goMapButton_g5, "image/game5/goEnding.png");
     locateObject(goMapButton_g5, scene_g5, 450, 340);
 
 
     
-    //¿ÀºêÁ§Æ® ´Ù Áö¿ì±â
+    //ì˜¤ë¸Œì íŠ¸ ë‹¤ ì§€ìš°ê¸°
     hideObject(player_g5);
     hideObject(koopa);
 
@@ -177,9 +177,9 @@ void gameOver_g5() {
     gameStart = false;
     playSound(gameOverSound);
 
-    showMessage("°ÔÀÓ ¿À¹ö");
+    showMessage("ê²Œìž„ ì˜¤ë²„");
 
-    //¿ÀºêÁ§Æ® ´Ù Áö¿ì±â
+    //ì˜¤ë¸Œì íŠ¸ ë‹¤ ì§€ìš°ê¸°
     hideObject(player_g5);
     hideObject(koopa);
    
@@ -212,11 +212,11 @@ void gameOver_g5() {
 
 void jump_g5() {
 
-    if (isRising_g5)    //»ó½Â
+    if (isRising_g5)    //ìƒìŠ¹
     {
         playerY_g5 += gravity_g5;
        
-        if (playerY_g5 > playerTop)  {     //»ó½Â ³¡³ª¸é -> else
+        if (playerY_g5 > playerTop)  {     //ìƒìŠ¹ ëë‚˜ë©´ -> else
             playerY_g5 -= gravity_g5;
             isRising_g5 = false;
         }
@@ -227,11 +227,11 @@ void jump_g5() {
         startTimer(jumpTimer_g5);
     }
 
-    else  //ÂøÁö
+    else  //ì°©ì§€
     {
         playerY_g5 -= gravity_g5;
 
-        if (playerY_g5 < playerBottom) {    //ÂøÁö ³¡³ª¸é
+        if (playerY_g5 < playerBottom) {    //ì°©ì§€ ëë‚˜ë©´
             playerY_g5 += gravity_g5;
             isLanded = true;
             stopTimer(jumpTimer_g5);
@@ -239,7 +239,7 @@ void jump_g5() {
 
         locateObject(player_g5, scene_g5, playerX_g5, playerY_g5);
 
-        if (isLanded == false) {        //ÂøÁö Àü±îÁö´Â Å¸ÀÌ¸Ó °è¼Ó
+        if (isLanded == false) {        //ì°©ì§€ ì „ê¹Œì§€ëŠ” íƒ€ì´ë¨¸ ê³„ì†
             setTimer(jumpTimer_g5, 0.05f);
             startTimer(jumpTimer_g5);
         }
@@ -248,11 +248,11 @@ void jump_g5() {
 
 void koopaJump() {
 
-    if (koopaisRising)    //»ó½Â
+    if (koopaisRising)    //ìƒìŠ¹
     {
         koopaY += gravity_g5;
 
-        if (koopaY > koopaTop) {     //»ó½Â ³¡³ª¸é -> else
+        if (koopaY > koopaTop) {     //ìƒìŠ¹ ëë‚˜ë©´ -> else
             koopaY -= gravity_g5;
             koopaisRising = false;
         }
@@ -263,11 +263,11 @@ void koopaJump() {
         startTimer(koopaJumpTimer);
     }
 
-    else  //ÂøÁö
+    else  //ì°©ì§€
     {
         koopaY -= gravity_g5;
 
-        if (koopaY < playerBottom) {    //ÂøÁö ³¡³ª¸é
+        if (koopaY < playerBottom) {    //ì°©ì§€ ëë‚˜ë©´
             koopaY += gravity_g5;
             koopaisLanded = true;
             stopTimer(koopaJumpTimer);
@@ -275,7 +275,7 @@ void koopaJump() {
 
         locateObject(koopa, scene_g5, koopaX, koopaY);
 
-        if (koopaisLanded == false) {        //ÂøÁö Àü±îÁö´Â Å¸ÀÌ¸Ó °è¼Ó
+        if (koopaisLanded == false) {        //ì°©ì§€ ì „ê¹Œì§€ëŠ” íƒ€ì´ë¨¸ ê³„ì†
             setTimer(koopaJumpTimer, 0.05f);
             startTimer(koopaJumpTimer);
         }
@@ -319,14 +319,14 @@ void attack2() {
 
 void koopaDamage() {
 
-    //µ¥¹ÌÁö ÀÔ´Â ¾Ö´Ï¸ÞÀÌ¼Ç
+    //ë°ë¯¸ì§€ ìž…ëŠ” ì• ë‹ˆë©”ì´ì…˜
     koopaCount = 0;
     setTimer(koopaDamageTimer, 0.05f);
     startTimer(koopaDamageTimer);
 
-    koopaHP -= 20;  //(20/500) 25¹ø ¶§¸®¸é Á×À½
+    koopaHP -= 20;  //(20/500) 25ë²ˆ ë•Œë¦¬ë©´ ì£½ìŒ
     
-    //Ã¼·Â¹Ù ÁÙ¾îµé±â (Èº»ö¹Ù ¿ÞÂÊÀ¸·Î ¿Å±â±â)
+    //ì²´ë ¥ë°” ì¤„ì–´ë“¤ê¸° (íšìƒ‰ë°” ì™¼ìª½ìœ¼ë¡œ ì˜®ê¸°ê¸°)
     //x : hp + 640 
     if (koopaHP >= 0) {
         locateObject(HPbarBlank, scene_g5, koopaHP + 640, 640);
@@ -361,7 +361,7 @@ void playerDamage() {
 
 }
 
-//ÇÃ·¹ÀÌ¾î ÇâÇØ¼­ ºÒ ¹ß»ç
+//í”Œë ˆì´ì–´ í–¥í•´ì„œ ë¶ˆ ë°œì‚¬
 void koopaFire1Attack() {
 
     playSound(koopaFireSound1);
@@ -390,7 +390,7 @@ void koopaFire2Attack() {
 
 }
 
-//Æ¨±â´Â ºÒ°ø ¹Ù´ÚÀ¸·Î ´øÁö±â
+//íŠ•ê¸°ëŠ” ë¶ˆê³µ ë°”ë‹¥ìœ¼ë¡œ ë˜ì§€ê¸°
 void koopaBallAttack() {
     
     playSound(koopaFireSound3);
@@ -453,7 +453,7 @@ void Game5_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
        if(stage6Clear == false)
            enterTitle(0);
 
-       //Å¬¸®¾î ÇßÀ¸¸é
+       //í´ë¦¬ì–´ í–ˆìœ¼ë©´
        else {
            setGameOption(GameOption::GAME_OPTION_ROOM_TITLE, false);
            startEnding();
@@ -470,7 +470,7 @@ void Game5_timerCallback(TimerID timer) {
     }
 
     if (timer == playTimer_g5) {
-        if (playerX_g5 + dx_g5 > 1280 - playerSizeX_g5 || playerX_g5 + dx_g5 < 0 || playerY_g5 + dy_g5 > 720 - playerSizeY_g5 || playerY_g5 + dy_g5 < 0) {}	//Å×µÎ¸® ³ª°¡¸é ÀÌµ¿ ¾È½ÃÅ°±â
+        if (playerX_g5 + dx_g5 > 1280 - playerSizeX_g5 || playerX_g5 + dx_g5 < 0 || playerY_g5 + dy_g5 > 720 - playerSizeY_g5 || playerY_g5 + dy_g5 < 0) {}	//í…Œë‘ë¦¬ ë‚˜ê°€ë©´ ì´ë™ ì•ˆì‹œí‚¤ê¸°
 
         else {
             playerX_g5 += dx_g5; playerY_g5 += dy_g5;
@@ -479,7 +479,7 @@ void Game5_timerCallback(TimerID timer) {
         }
 
         if (playerX_g5 >= koopaX - playerSizeX_g5 && playerX_g5 <= koopaX + koopaSizeX &&
-            playerY_g5 >= koopaY - playerSizeY_g5 && playerY_g5 <= koopaY + koopaSizeY) {     //¸¶¸®¿À ÄíÆÄ¶û ºÎµúÈ÷¸é
+            playerY_g5 >= koopaY - playerSizeY_g5 && playerY_g5 <= koopaY + koopaSizeY) {     //ë§ˆë¦¬ì˜¤ ì¿ íŒŒëž‘ ë¶€ë”ªížˆë©´
         
             playerLife = 0;
             playerDamage();
@@ -489,7 +489,7 @@ void Game5_timerCallback(TimerID timer) {
 
         if (isJumping == true) {
             
-            if (isLanded == true) {//¹Ù´Ú¿¡ ÀÖÀ» ¶§¸¸ Á¡ÇÁ
+            if (isLanded == true) {//ë°”ë‹¥ì— ìžˆì„ ë•Œë§Œ ì í”„
                 playSound(jumpSound_g5);
                 
                 isRising_g5 = true;
@@ -526,7 +526,7 @@ void Game5_timerCallback(TimerID timer) {
 
     if (timer == fire1MoveTimer) {
 
-        //ºÒ Â÷·Ê·Î ½ºÆù
+        //ë¶ˆ ì°¨ë¡€ë¡œ ìŠ¤í°
         if (fire1Num == 2)
             showObject(fire1[1]);
         else if (fire1Num == 4)
@@ -537,18 +537,18 @@ void Game5_timerCallback(TimerID timer) {
         if (fire1Num < 6)
             fire1Num++;
 
-        //ºÒ ÀÌµ¿
+        //ë¶ˆ ì´ë™
         for (int i = 0; i < 4; i++) {
             fire1X[i] += FIRE_SPEED;
             locateObject(fire1[i], scene_g5, fire1X[i], fire1Y);
         }
 
-        //ºÒ ¾ø¾îÁú Á¶°Ç
-        if (fire1X[0] > 1200)               //È­¸é ¹ÛÀ¸·Î ³ª°¡¸é °ø°Ý ³¡
+        //ë¶ˆ ì—†ì–´ì§ˆ ì¡°ê±´
+        if (fire1X[0] > 1200)               //í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ë©´ ê³µê²© ë
             attacking1 = false;
 
         if (koopaX - fire1X[0] >= -koopaSizeX && koopaX - fire1X[0] <= fireSize &&
-            fire1Y - koopaY >= -30 && fire1Y - koopaY <= koopaSizeY){    //ºÒÀÌ ÄíÆÄ¶û ºÎµúÈ÷¸é
+            fire1Y - koopaY >= -30 && fire1Y - koopaY <= koopaSizeY){    //ë¶ˆì´ ì¿ íŒŒëž‘ ë¶€ë”ªížˆë©´
 
             koopaDamage();
             playSound(koopaDamageSound1);
@@ -556,14 +556,14 @@ void Game5_timerCallback(TimerID timer) {
             attacking1 = false;
         }
 
-        //°ø°Ý ³¡³¯ ½Ã
+        //ê³µê²© ëë‚  ì‹œ
         if (attacking1 == false) {
 
             for (int i = 0; i < 4; i++)
                 hideObject(fire1[i]);
         }
 
-        //°ø°Ý Áö¼Ó
+        //ê³µê²© ì§€ì†
         else {
             setTimer(fire1MoveTimer, 0.05f);
             startTimer(fire1MoveTimer);
@@ -590,11 +590,11 @@ void Game5_timerCallback(TimerID timer) {
         }
 
         
-        if (fire2X[0] > 1200)               //È­¸é ¹ÛÀ¸·Î ³ª°¡¸é °ø°Ý ³¡
+        if (fire2X[0] > 1200)               //í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ë©´ ê³µê²© ë
             attacking2 = false;
 
         if (koopaX - fire2X[0] >= -koopaSizeX && koopaX - fire2X[0] <= fireSize &&
-            fire2Y - koopaY >= -30 && fire2Y - koopaY <= koopaSizeY) {    //ºÒÀÌ ÄíÆÄ¶û ºÎµúÈ÷¸é
+            fire2Y - koopaY >= -30 && fire2Y - koopaY <= koopaSizeY) {    //ë¶ˆì´ ì¿ íŒŒëž‘ ë¶€ë”ªížˆë©´
 
             koopaDamage();
             playSound(koopaDamageSound2);
@@ -643,11 +643,11 @@ void Game5_timerCallback(TimerID timer) {
         kFire1X -= KOOPA_FIRE_SPEED;
         locateObject(koopaFire1, scene_g5, kFire1X, kFire1Y);
 
-        if (kFire1X < 10)        //È­¸é ¹ÛÀ¸·Î ³ª°¡¸é »ç¶óÁü
+        if (kFire1X < 10)        //í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ë©´ ì‚¬ë¼ì§
             hideObject(koopaFire1);
 
         else if (kFire1X >= playerX_g5 - kFireSizeX + GAP && kFire1X <= playerX_g5 + playerSizeX_g5 - GAP &&
-                 kFire1Y >= playerY_g5 - kFireSizeY + GAP && kFire1Y <= playerY_g5 + playerSizeY_g5 - GAP) {     //¸¶¸®¿À¶û ºÎµúÈ÷¸é
+                 kFire1Y >= playerY_g5 - kFireSizeY + GAP && kFire1Y <= playerY_g5 + playerSizeY_g5 - GAP) {     //ë§ˆë¦¬ì˜¤ëž‘ ë¶€ë”ªížˆë©´
 
             playerDamage();
 
@@ -666,11 +666,11 @@ void Game5_timerCallback(TimerID timer) {
         kFire2X -= KOOPA_FIRE_SPEED + 10;
         locateObject(koopaFire2, scene_g5, kFire2X, kFire2Y);
 
-        if (kFire2X < 10)        //È­¸é ¹ÛÀ¸·Î ³ª°¡¸é »ç¶óÁü
+        if (kFire2X < 10)        //í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ë©´ ì‚¬ë¼ì§
             hideObject(koopaFire2);
 
         else if (kFire2X >= playerX_g5 - kFireSizeX + GAP && kFire2X <= playerX_g5 + playerSizeX_g5 - GAP &&
-                 kFire2Y >= playerY_g5 - kFireSizeY + GAP && kFire2Y <= playerY_g5 + playerSizeY_g5 - GAP) {     //¸¶¸®¿À¶û ºÎµúÈ÷¸é
+                 kFire2Y >= playerY_g5 - kFireSizeY + GAP && kFire2Y <= playerY_g5 + playerSizeY_g5 - GAP) {     //ë§ˆë¦¬ì˜¤ëž‘ ë¶€ë”ªížˆë©´
 
             playerDamage();
 
@@ -695,16 +695,16 @@ void Game5_timerCallback(TimerID timer) {
         else
             kBallY += KOOPA_FIRE_SPEED - 5;
 
-        if (kBallY <= playerBottom)         //¹Ù´Ú¿¡ ´êÀ¸¸é À§·Î Æ¨±â±â
+        if (kBallY <= playerBottom)         //ë°”ë‹¥ì— ë‹¿ìœ¼ë©´ ìœ„ë¡œ íŠ•ê¸°ê¸°
             kBallisRising = true;
 
         locateObject(koopaFire1Ball, scene_g5, kBallX, kBallY);
 
-        if (kBallX < 10 || kBallY > 600)        //È­¸é ¹ÛÀ¸·Î ³ª°¡¸é »ç¶óÁü
+        if (kBallX < 10 || kBallY > 600)        //í™”ë©´ ë°–ìœ¼ë¡œ ë‚˜ê°€ë©´ ì‚¬ë¼ì§
             hideObject(koopaFire1Ball);
 
         else if (kBallX >= playerX_g5 - kBallSize + GAP && kBallX <= playerX_g5 + playerSizeX_g5 - GAP &&
-                 kBallY >= playerY_g5 - kBallSize + GAP && kBallY <= playerY_g5 + playerSizeY_g5 - GAP) {     //¸¶¸®¿À¶û ºÎµúÈ÷¸é
+                 kBallY >= playerY_g5 - kBallSize + GAP && kBallY <= playerY_g5 + playerSizeY_g5 - GAP) {     //ë§ˆë¦¬ì˜¤ëž‘ ë¶€ë”ªížˆë©´
 
             playerDamage();
 
@@ -757,19 +757,19 @@ void Game5_keyboardCallback(KeyCode code, KeyState state) {
 
     if (nowGameSceneNum == 5) {
 
-        if (code == 83) {		// RIGHT
-            dx_g5 += (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+        if (code == KeyCode::KEY_RIGHT_ARROW) {		// RIGHT
+            dx_g5 += (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
         }
-        else if (code == 82) {		// LEFT
-            dx_g5 -= (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
-        }
-
-        if (code == 84) {			// Jump 
-            isJumping += (state == KeyState::KEYBOARD_PRESSED ? 1 : -1);
+        else if (code == KeyCode::KEY_LEFT_ARROW) {		// LEFT
+            dx_g5 -= (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
         }
 
-        if (code == 75) {           // ºÒ ¹ß»ç : ½ºÆäÀÌ½º¹Ù
-            if (state == KeyState::KEYBOARD_PRESSED && gameStart == true) {
+        if (code == KeyCode::KEY_UP_ARROW) {			// Jump 
+            isJumping += (state == KeyState::KEY_PRESSED ? 1 : -1);
+        }
+
+        if (code == KeyCode::KEY_SPACE) {           // ë¶ˆ ë°œì‚¬ : ìŠ¤íŽ˜ì´ìŠ¤ë°”
+            if (state == KeyState::KEY_PRESSED && gameStart == true) {
 
                 if (attacking1 == false) {
                     attack1();
@@ -796,36 +796,36 @@ void Game5_soundCallback(SoundID sound) {
 
 void Game5_main() {
 
-	scene_g5 = createScene("BOSS STAGE ÄíÆÄ ¼º", "image/game5/ÄíÆÄ¼º¹è°æ.png");
+	scene_g5 = createScene("BOSS STAGE ì¿ íŒŒ ì„±", "image/game5/ì¿ íŒŒì„±ë°°ê²½.png");
 
     startButton_g5 = createObject("image/game6/start.png", scene_g5, 530, 350, true, 1.0f);
     restartButton_g5 = createObject("image/game6/restart.png", scene_g5, 470, 350, false, 1.0f);
     goMapButton_g5 = createObject("image/game6/goMap.png", scene_g5, 20, 20, true, 1.0f);
 
-    //Ã¼·Â¹Ù : 500 x 40
-    HPbar = createObject("image/game5/Ã¼·Â¹Ù.png", scene_g5, 640, 640, true, 1.0f);
-    HPbarBlank = createObject("image/game5/Ã¼·Â¹ÙÈò»ö.png", scene_g5, 1140, 640, true, 1.0f);
-    HPright = createObject("image/game5/Ã¼·Â¹Ù¹è°æ.png", scene_g5, 1140, 640, true, 1.0f);
-    HPbarLine = createObject("image/game5/Ã¼·Â¹ÙÅ×µÎ¸®.png", scene_g5, 640, 640, true, 1.0f);
+    //ì²´ë ¥ë°” : 500 x 40
+    HPbar = createObject("image/game5/ì²´ë ¥ë°”.png", scene_g5, 640, 640, true, 1.0f);
+    HPbarBlank = createObject("image/game5/ì²´ë ¥ë°”í°ìƒ‰.png", scene_g5, 1140, 640, true, 1.0f);
+    HPright = createObject("image/game5/ì²´ë ¥ë°”ë°°ê²½.png", scene_g5, 1140, 640, true, 1.0f);
+    HPbarLine = createObject("image/game5/ì²´ë ¥ë°”í…Œë‘ë¦¬.png", scene_g5, 640, 640, true, 1.0f);
 
-    playerFrame = createObject("image/game5/¸¶¸®¿À±×¸².png", scene_g5, 240, 640, true, 1.3f);
-    koopaFrame = createObject("image/game5/ÄíÆÄ±×¸².png", scene_g5, 560, 640, true, 1.3f);
+    playerFrame = createObject("image/game5/ë§ˆë¦¬ì˜¤ê·¸ë¦¼.png", scene_g5, 240, 640, true, 1.3f);
+    koopaFrame = createObject("image/game5/ì¿ íŒŒê·¸ë¦¼.png", scene_g5, 560, 640, true, 1.3f);
 
     for (int i = 0; i < 3; i++) {
-        playerHP[i] = createObject("image/game5/ÇÏÆ®.png", scene_g5, 320 + 55 * i, 640, true, 1.0f);
+        playerHP[i] = createObject("image/game5/í•˜íŠ¸.png", scene_g5, 320 + 55 * i, 640, true, 1.0f);
     }
 
-	player_g5 = createObject("image/game5/¸¶¸®¿À/¸¶¸®¿À ¾Ö´Ï¸ÞÀÌ¼Ç1.png", scene_g5, playerX_g5, playerBottom, true, 1.0f);
-	koopa = createObject("image/game5/ÄíÆÄ/ÄíÆÄ ¾Ö´Ï¸ÞÀÌ¼Ç1.png", scene_g5, koopaX, koopaY, true, 1.0f);
+	player_g5 = createObject("image/game5/ë§ˆë¦¬ì˜¤/ë§ˆë¦¬ì˜¤ ì• ë‹ˆë©”ì´ì…˜1.png", scene_g5, playerX_g5, playerBottom, true, 1.0f);
+	koopa = createObject("image/game5/ì¿ íŒŒ/ì¿ íŒŒ ì• ë‹ˆë©”ì´ì…˜1.png", scene_g5, koopaX, koopaY, true, 1.0f);
 
-    koopaFire1 = createObject("image/game5/ÄíÆÄºÒ.png", scene_g5, 1, 1, false, 1.0f);
-    koopaFire2 = createObject("image/game5/ÄíÆÄºÒ.png", scene_g5, 1, 1, false, 1.0f);
-    koopaFire1Ball = createObject("image/game5/ÄíÆÄºÒ°ø.png", scene_g5, 1, 1, false, 1.0f);
+    koopaFire1 = createObject("image/game5/ì¿ íŒŒë¶ˆ.png", scene_g5, 1, 1, false, 1.0f);
+    koopaFire2 = createObject("image/game5/ì¿ íŒŒë¶ˆ.png", scene_g5, 1, 1, false, 1.0f);
+    koopaFire1Ball = createObject("image/game5/ì¿ íŒŒë¶ˆê³µ.png", scene_g5, 1, 1, false, 1.0f);
 
     char path_g5[256];
 
     for (int i = 0; i < 4; i++) {
-        sprintf_s(path_g5, "image/game5/ºÒ%d.png", i + 1);
+        sprintf_s(path_g5, "image/game5/ë¶ˆ%d.png", i + 1);
         fire1[i] = createObject(path_g5, scene_g5, 1, 1, false, 0.8f);
         fire2[i] = createObject(path_g5, scene_g5, 1, 1, false, 0.8f);
     }
@@ -854,18 +854,18 @@ void Game5_main() {
     playerAnimationTimer_g5 = createTimer(0.05f);
     koopaAnimationTimer = createTimer(0.2f);
 
-    bgm_g5 = createSound("sounds/¹è°æÀ½/ÄíÆÄ¼º.mp3");
+    bgm_g5 = createSound("sounds/ë°°ê²½ìŒ/ì¿ íŒŒì„±.mp3");
 
-    jumpSound_g5 = createSound("sounds/°øÅë/Á¡ÇÁ.mp3");
-    jumpSound2_g5 = createSound("sounds/°øÅë/Á¡ÇÁ2.mp3");
+    jumpSound_g5 = createSound("sounds/ê³µí†µ/ì í”„.mp3");
+    jumpSound2_g5 = createSound("sounds/ê³µí†µ/ì í”„2.mp3");
 
-    playerFireSound1 = createSound("sounds/game5/¸¶¸®¿ÀºÒ°ø°Ý1.wav");
-    playerFireSound2 = createSound("sounds/game5/¸¶¸®¿ÀºÒ°ø°Ý2.wav");
-    koopaFireSound1 = createSound("sounds/game5/ÄíÆÄºÒ°ø°Ý1.mp3");
-    koopaFireSound2 = createSound("sounds/game5/ÄíÆÄºÒ°ø°Ý2.mp3");
-    koopaFireSound3 = createSound("sounds/game5/ÄíÆÄºÒ°ø°Ý3.mp3");
+    playerFireSound1 = createSound("sounds/game5/ë§ˆë¦¬ì˜¤ë¶ˆê³µê²©1.wav");
+    playerFireSound2 = createSound("sounds/game5/ë§ˆë¦¬ì˜¤ë¶ˆê³µê²©2.wav");
+    koopaFireSound1 = createSound("sounds/game5/ì¿ íŒŒë¶ˆê³µê²©1.mp3");
+    koopaFireSound2 = createSound("sounds/game5/ì¿ íŒŒë¶ˆê³µê²©2.mp3");
+    koopaFireSound3 = createSound("sounds/game5/ì¿ íŒŒë¶ˆê³µê²©3.mp3");
 
-    koopaDamageSound1 = createSound("sounds/game5/ÄíÆÄµ¥¹ÌÁö1.mp3");
-    koopaDamageSound2 = createSound("sounds/game5/ÄíÆÄµ¥¹ÌÁö2.mp3");
-    playerDamageSound = createSound("sounds/game5/¸¶¸®¿Àµ¥¹ÌÁö.mp3");
+    koopaDamageSound1 = createSound("sounds/game5/ì¿ íŒŒë°ë¯¸ì§€1.mp3");
+    koopaDamageSound2 = createSound("sounds/game5/ì¿ íŒŒë°ë¯¸ì§€2.mp3");
+    playerDamageSound = createSound("sounds/game5/ë§ˆë¦¬ì˜¤ë°ë¯¸ì§€.mp3");
 }

@@ -1,4 +1,4 @@
-#include<bangtal.h>
+ï»¿#include<bangtal.h>
 #include<math.h>
 #include<stdio.h>
 #include<stdlib.h>
@@ -21,17 +21,17 @@ int stopPosX = 530, textStartPosX = 400;
 
 
 const char* endingAnimationImage1[7]
-= { "image/Ending/¸¶¸®¿ÀÇÇÄ¡/¾îµÎ¿î1.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/¾îµÎ¿î2.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/¾îµÎ¿î3.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/¾îµÎ¿î4.png",
-"image/Ending/¸¶¸®¿ÀÇÇÄ¡/¾îµÎ¿î5.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/¾îµÎ¿î6.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/¾îµÎ¿î7.png" };
+= { "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/ì–´ë‘ìš´1.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/ì–´ë‘ìš´2.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/ì–´ë‘ìš´3.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/ì–´ë‘ìš´4.png",
+"image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/ì–´ë‘ìš´5.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/ì–´ë‘ìš´6.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/ì–´ë‘ìš´7.png" };
 
 const char* endingAnimationImage2[7]
-= { "image/Ending/¸¶¸®¿ÀÇÇÄ¡/1.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/2.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/3.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/4.png",
-"image/Ending/¸¶¸®¿ÀÇÇÄ¡/5.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/6.png", "image/Ending/¸¶¸®¿ÀÇÇÄ¡/7.png" };
+= { "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/1.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/2.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/3.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/4.png",
+"image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/5.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/6.png", "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/7.png" };
 
 const char* endingAnimationImage3[12]
-= { "image/Ending/Å¬¸®¾îÅØ½ºÆ®/1.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/2.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/3.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/4.png",
-"image/Ending/Å¬¸®¾îÅØ½ºÆ®/5.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/6.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/7.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/8.png",
-"image/Ending/Å¬¸®¾îÅØ½ºÆ®/9.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/10.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/11.png", "image/Ending/Å¬¸®¾îÅØ½ºÆ®/12.png" };
+= { "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/1.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/2.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/3.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/4.png",
+"image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/5.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/6.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/7.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/8.png",
+"image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/9.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/10.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/11.png", "image/Ending/í´ë¦¬ì–´í…ìŠ¤íŠ¸/12.png" };
 
 
 extern ObjectID createObject(const char* name, SceneID scene, int x, int y, bool shown, float size);
@@ -65,7 +65,7 @@ void Ending_timerCallback(TimerID timer) {
         if (marioPeachX >= stopPosX && animationCount % 7 == 6) {
 
             stopTimer(endingAnimationTimer2);
-            setObjectImage(marioPeach, "image/Ending/¸¶¸®¿ÀÇÇÄ¡/idle.png");
+            setObjectImage(marioPeach, "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/idle.png");
 
             showObject(clearText);
             startTimer(textMoveTimer);
@@ -80,13 +80,13 @@ void Ending_timerCallback(TimerID timer) {
 
     }
 
-    //ÆäÀÌµå ÀÎ
+    //í˜ì´ë“œ ì¸
     if (timer == endingAnimationTimer1) {
 
         setObjectImage(marioPeach, endingAnimationImage1[animationCount % 7]);
         animationCount++;
 
-        //ÇÑ¹ÙÄû¸¸ ½ÇÇà
+        //í•œë°”í€´ë§Œ ì‹¤í–‰
         if (animationCount < 7) {
             setTimer(endingAnimationTimer1, 0.12f);
             startTimer(endingAnimationTimer1);
@@ -97,7 +97,7 @@ void Ending_timerCallback(TimerID timer) {
         }
     }
 
-    //°È´Â ¾Ö´Ï¸ŞÀÌ¼Ç
+    //ê±·ëŠ” ì• ë‹ˆë©”ì´ì…˜
     if (timer == endingAnimationTimer2) {
         
         setObjectImage(marioPeach, endingAnimationImage2[animationCount % 7]);
@@ -112,7 +112,7 @@ void Ending_timerCallback(TimerID timer) {
         textX -= 15;
         locateObject(clearText, endingScene, textX, textY);
 
-        //¾ÆÁ÷ ÀÌµ¿ ´Ù ¾ÈÇßÀ¸¸é °è¼Ó ÀÌµ¿
+        //ì•„ì§ ì´ë™ ë‹¤ ì•ˆí–ˆìœ¼ë©´ ê³„ì† ì´ë™
          setTimer(textMoveTimer, MARIO_PEACH_ANIMATION_TIME);
          startTimer(textMoveTimer);
     }
@@ -132,7 +132,7 @@ void Ending_timerCallback(TimerID timer) {
     }
 
     if (timer == VanimationTimer) {
-        setObjectImage(marioPeach, "image/Ending/¸¶¸®¿ÀÇÇÄ¡/vPos.png");
+        setObjectImage(marioPeach, "image/Ending/ë§ˆë¦¬ì˜¤í”¼ì¹˜/vPos.png");
         showObject(goTitleButton);
     }
 
@@ -141,7 +141,7 @@ void Ending_timerCallback(TimerID timer) {
 
 void Ending_main() {
 
-    endingScene = createScene("¿£µù", "image/Ending/¿£µù¹è°æ.png");
+    endingScene = createScene("ì—”ë”©", "image/Ending/ì—”ë”©ë°°ê²½.png");
 
     marioPeach = createObject(endingAnimationImage1[0], endingScene, marioPeachX, marioPeachY, true, 1.0f);
     clearText = createObject(endingAnimationImage3[0], endingScene, textX, textY , false, 1.0f);
@@ -154,6 +154,6 @@ void Ending_main() {
     endingAnimationTimer3 = createTimer(0.05f);
     VanimationTimer = createTimer(2.5f);
 
-    bgm_Ending = createSound("sounds/¹è°æÀ½/¿£µù.mp3");
+    bgm_Ending = createSound("sounds/ë°°ê²½ìŒ/ì—”ë”©.mp3");
 
 }

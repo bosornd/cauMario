@@ -1,4 +1,4 @@
-#include <bangtal.h>
+ï»¿#include <bangtal.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +7,7 @@
 #define PLAYER_SPEED				13
 #define MONSTER_SPEED				1
 #define MONSTER_NUMBER				8
-#define ENDMONSTER_STATE			2	//¸¶Áö¸· ¸ó½ºÅÍ ·¹º§(°ÔÀÓ ³¡³ª´Â ·¹º§)
+#define ENDMONSTER_STATE			2	//ë§ˆì§€ë§‰ ëª¬ìŠ¤í„° ë ˆë²¨(ê²Œì„ ëë‚˜ëŠ” ë ˆë²¨)
 #define PLAYER_IMAGE_SIZE			100
 #define MONSTER_IMAGE_SIZE			100
 #define GAP							10
@@ -31,9 +31,9 @@ int setMonsterY[MONSTER_NUMBER] = { 350,630,70,350,   480,480,200,200 };
 int monsterX[MONSTER_NUMBER], monsterY[MONSTER_NUMBER];
 int dx_g6 = 0, dy_g6 = 0, dmx = 0, dmy = 0;
 
-int playerState_g6 = 1;	//ÇÃ·¹ÀÌ¾î »óÅÂ(Å©±â) : Ã³À½Àº 1´Ü°è
-int monsterState[MONSTER_NUMBER] = { 1,1,1,1,2,2,2,2 };	//¸ó½ºÅÍ »óÅÂ
-int monsterNumber[ENDMONSTER_STATE] = { 4,4 };		//stateº° ¸ó½ºÅÍ ¸¶¸®¼ö
+int playerState_g6 = 1;	//í”Œë ˆì´ì–´ ìƒíƒœ(í¬ê¸°) : ì²˜ìŒì€ 1ë‹¨ê³„
+int monsterState[MONSTER_NUMBER] = { 1,1,1,1,2,2,2,2 };	//ëª¬ìŠ¤í„° ìƒíƒœ
+int monsterNumber[ENDMONSTER_STATE] = { 4,4 };		//stateë³„ ëª¬ìŠ¤í„° ë§ˆë¦¬ìˆ˜
 float monsterSize[MONSTER_NUMBER] = { 70,70,70,70,100,100,100,100 };
 float playerSize_g6 = monsterSize[0];
 
@@ -75,7 +75,7 @@ void restart_g6() {
 	scaleObject(player_g6, (float)playerSize_g6 / PLAYER_IMAGE_SIZE);
 	showObject(player_g6);
 
-	//¸ó½ºÅÍ ½ºÆù
+	//ëª¬ìŠ¤í„° ìŠ¤í°
 	for (int i = 0; i < MONSTER_NUMBER; i++) {
 		monsterX[i] = setMonsterX[i], monsterY[i] = setMonsterY[i];
 		locateObject(monster[i],scene_g6, monsterX[i], monsterY[i]);
@@ -95,7 +95,7 @@ void gameClear_g6() {
 	stopTimer(growUpTimer_g6);
 
 	nowGame6Stage = 2;
-	showMessage("1 ½ºÅ×ÀÌÁö Å¬¸®¾î");
+	showMessage("1 ìŠ¤í…Œì´ì§€ í´ë¦¬ì–´");
 
 	enterScene(scene_g62);
 
@@ -131,7 +131,7 @@ void growUp_g6() {
 
 void Game6_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 
-	if (object == startButton_g6) {		//Å¸ÀÌ¸Ó ÄÑÁö¸é¼­(¿ÀºêÁ§Æ® ÀÌµ¿ ½ÃÀÛ) °ÔÀÓ½ÃÀÛ
+	if (object == startButton_g6) {		//íƒ€ì´ë¨¸ ì¼œì§€ë©´ì„œ(ì˜¤ë¸Œì íŠ¸ ì´ë™ ì‹œì‘) ê²Œì„ì‹œì‘
 		playSound(countDownSound_g6);
 		showObject(restartButton2_g6);
 		showObject(countDown);
@@ -162,19 +162,19 @@ void Game6_keyboardCallback(KeyCode code, KeyState state)
 {
 	if (nowGameSceneNum == 6) {
 
-		if (code == 84) {			// UP
-			dy_g6 += (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		if (code == KeyCode::KEY_UP_ARROW) {			// UP
+			dy_g6 += (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
-		else if (code == 85) {		// DOWN
-			dy_g6 -= (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		else if (code == KeyCode::KEY_DOWN_ARROW) {		// DOWN
+			dy_g6 -= (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
-		else if (code == 83) {		// RIGHT
-			setObjectImage(player_g6, "image/game6/³¯°³¸¶¸®¿À¿ì.png");
-			dx_g6 += (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		else if (code == KeyCode::KEY_RIGHT_ARROW) {		// RIGHT
+			setObjectImage(player_g6, "image/game6/ë‚ ê°œë§ˆë¦¬ì˜¤ìš°.png");
+			dx_g6 += (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
-		else if (code == 82) {		// LEFT
-			setObjectImage(player_g6, "image/game6/³¯°³¸¶¸®¿ÀÁÂ.png");
-			dx_g6 -= (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		else if (code == KeyCode::KEY_LEFT_ARROW) {		// LEFT
+			setObjectImage(player_g6, "image/game6/ë‚ ê°œë§ˆë¦¬ì˜¤ì¢Œ.png");
+			dx_g6 -= (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
 	}
 }
@@ -203,23 +203,23 @@ void Game6_timerCallback(TimerID timer)
 		}
 	}
 
-	//°ø Á¶ÀÛ
+	//ê³µ ì¡°ì‘
 	if (timer == playTimer_g6) {
-		if (playerX_g6 + dx_g6 > 1280 - playerSize_g6 || playerX_g6 + dx_g6 < 0 || playerY_g6 + dy_g6 > 720 - playerSize_g6 || playerY_g6 + dy_g6 < 0) {}	//Å×µÎ¸® ³ª°¡¸é ÀÌµ¿ ¾È½ÃÅ°±â
+		if (playerX_g6 + dx_g6 > 1280 - playerSize_g6 || playerX_g6 + dx_g6 < 0 || playerY_g6 + dy_g6 > 720 - playerSize_g6 || playerY_g6 + dy_g6 < 0) {}	//í…Œë‘ë¦¬ ë‚˜ê°€ë©´ ì´ë™ ì•ˆì‹œí‚¤ê¸°
 
 		else {
 			playerX_g6 += dx_g6; playerY_g6 += dy_g6;
 			locateObject(player_g6, scene_g6, playerX_g6, playerY_g6);
 		}
 		for (int i = 0; i < MONSTER_NUMBER; i++) {
-			if (monsterIsShown[i] == true) {			//Á×Àº(¾Èº¸ÀÌ´Â) ¸ó½ºÅÍ¿¡´Â ¹İÀÀx
-				if (monsterX[i] - playerX_g6 <= playerSize_g6 - GAP && monsterX[i] - playerX_g6 >= -monsterSize[i] + GAP &&		//ÇÃ·¹ÀÌ¾î°¡ ¸ó½ºÅÍ¶û xÃà ºÎµúÈ÷°í
-					monsterY[i] - playerY_g6 <= playerSize_g6 - GAP && monsterY[i] - playerY_g6 >= -monsterSize[i] + GAP) {		//yÃàµµ ºÎµúÈ÷¸é
+			if (monsterIsShown[i] == true) {			//ì£½ì€(ì•ˆë³´ì´ëŠ”) ëª¬ìŠ¤í„°ì—ëŠ” ë°˜ì‘x
+				if (monsterX[i] - playerX_g6 <= playerSize_g6 - GAP && monsterX[i] - playerX_g6 >= -monsterSize[i] + GAP &&		//í”Œë ˆì´ì–´ê°€ ëª¬ìŠ¤í„°ë‘ xì¶• ë¶€ë”ªíˆê³ 
+					monsterY[i] - playerY_g6 <= playerSize_g6 - GAP && monsterY[i] - playerY_g6 >= -monsterSize[i] + GAP) {		//yì¶•ë„ ë¶€ë”ªíˆë©´
 
-					if (playerState_g6 == monsterState[i]) {		//ºÎµúÇû´Âµ¥ ·¹º§ÀÌ ¶È°°À¸¸é
+					if (playerState_g6 == monsterState[i]) {		//ë¶€ë”ªí˜”ëŠ”ë° ë ˆë²¨ì´ ë˜‘ê°™ìœ¼ë©´
 						
-						hideObject(monster[i]);					//¸ó½ºÅÍ Á×ÀÓ
-						monsterIsShown[i] = false;				//¾Èº¸ÀÌ´Â »óÅÂÀÓÀ» ¹è¿­¿¡ ÀúÀå
+						hideObject(monster[i]);					//ëª¬ìŠ¤í„° ì£½ì„
+						monsterIsShown[i] = false;				//ì•ˆë³´ì´ëŠ” ìƒíƒœì„ì„ ë°°ì—´ì— ì €ì¥
 						monsterCount++;
 
 						if (monsterCount % 2 == 0)
@@ -227,24 +227,24 @@ void Game6_timerCallback(TimerID timer)
 						else 
 							playSound(catchSound2_g6);
 
-						if (monsterCount == monsterNumber[playerState_g6 - 1]) {				//Áö±İ ·¹º§ ¸ó½ºÅÍ ´Ù Á×ÀÌ¸é
-							if (playerState_g6 != ENDMONSTER_STATE) {						//Å¬¸®¾î°¡ ¾Æ´Ï¸é
+						if (monsterCount == monsterNumber[playerState_g6 - 1]) {				//ì§€ê¸ˆ ë ˆë²¨ ëª¬ìŠ¤í„° ë‹¤ ì£½ì´ë©´
+							if (playerState_g6 != ENDMONSTER_STATE) {						//í´ë¦¬ì–´ê°€ ì•„ë‹ˆë©´
 								nowState_g6 = playerState_g6;
 								growUp_g6();
 								
-								playerSize_g6 = monsterSize[monsterNumber[playerState_g6]];			//ÇÃ·¹ÀÌ¾î »çÀÌÁî ´ÙÀ½ ·¹º§ ¸ó½ºÅÍ¿Í °°°Ô ¸¸µé°í
-								playerState_g6++;													//ÇÃ·¹ÀÌ¾î ·¹º§ ¿Ã¸²
-								scaleObject(player_g6, (float)playerSize_g6 / PLAYER_IMAGE_SIZE);		//ÇÃ·¹ÀÌ¾î »çÀÌÁî ¹Ù²ãÁÜ
+								playerSize_g6 = monsterSize[monsterNumber[playerState_g6]];			//í”Œë ˆì´ì–´ ì‚¬ì´ì¦ˆ ë‹¤ìŒ ë ˆë²¨ ëª¬ìŠ¤í„°ì™€ ê°™ê²Œ ë§Œë“¤ê³ 
+								playerState_g6++;													//í”Œë ˆì´ì–´ ë ˆë²¨ ì˜¬ë¦¼
+								scaleObject(player_g6, (float)playerSize_g6 / PLAYER_IMAGE_SIZE);		//í”Œë ˆì´ì–´ ì‚¬ì´ì¦ˆ ë°”ê¿”ì¤Œ
 								monsterCount = 0;
 							}
-							else {															//	<°ÔÀÓÅ¬¸®¾î>
+							else {															//	<ê²Œì„í´ë¦¬ì–´>
 								gameClear_g6();
 								return;
 							}
 						}
 					}
 
-					else {										//ºÎµúÇû´Âµ¥ ¸ó½ºÅÍ ·¹º§ÀÌ ´õ Å©¸é
+					else {										//ë¶€ë”ªí˜”ëŠ”ë° ëª¬ìŠ¤í„° ë ˆë²¨ì´ ë” í¬ë©´
 						gameOver_g6();
 						return;
 					}
@@ -257,33 +257,33 @@ void Game6_timerCallback(TimerID timer)
 
 	}
 
-	//¸ó½ºÅÍ ·£´ı ÀÌµ¿
+	//ëª¬ìŠ¤í„° ëœë¤ ì´ë™
 	if (timer == monsterTimer_g6) {
 
 		for (int j = 0; j < MONSTER_NUMBER; j++) {
-			if (monsterIsShown[j] == true) {			//Á×Àº(¾Èº¸ÀÌ´Â) ¸ó½ºÅÍ¿¡´Â ¹İÀÀx
+			if (monsterIsShown[j] == true) {			//ì£½ì€(ì•ˆë³´ì´ëŠ”) ëª¬ìŠ¤í„°ì—ëŠ” ë°˜ì‘x
 
 				random();
 
-				if (num == 0)	//¿ŞÂÊ ÀÌµ¿
+				if (num == 0)	//ì™¼ìª½ ì´ë™
 					dmx -= MONSTER_SPEED;
-				else if (num == 1)	//¿À¸¥ÂÊ ÀÌµ¿
+				else if (num == 1)	//ì˜¤ë¥¸ìª½ ì´ë™
 					dmx += MONSTER_SPEED;
-				else if (num == 2)	//¾Æ·¡ ÀÌµ¿
+				else if (num == 2)	//ì•„ë˜ ì´ë™
 					dmy -= MONSTER_SPEED;
-				else if (num == 3)	//À§ ÀÌµ¿
+				else if (num == 3)	//ìœ„ ì´ë™
 					dmy += MONSTER_SPEED;
 
 				for (int i = 0; i < 32; i++) {
-					if (monsterX[j] + dmx > 1185 || monsterX[j] + dmx < 15 || monsterY[j] + dmy > 635 || monsterY[j] + dmy < 15)	//Å×µÎ¸® ³ª°¡¸é ÀÌµ¿ ¾È½ÃÅ°±â
+					if (monsterX[j] + dmx > 1185 || monsterX[j] + dmx < 15 || monsterY[j] + dmy > 635 || monsterY[j] + dmy < 15)	//í…Œë‘ë¦¬ ë‚˜ê°€ë©´ ì´ë™ ì•ˆì‹œí‚¤ê¸°
 						break;
 
 					else {
 						monsterX[j] += dmx, monsterY[j] += dmy;
-						locateObject(monster[j], scene_g6, monsterX[j], monsterY[j]);			//32¹ø ÂÉ°³¼­ ÀÌµ¿
+						locateObject(monster[j], scene_g6, monsterX[j], monsterY[j]);			//32ë²ˆ ìª¼ê°œì„œ ì´ë™
 					}
 				}
-				dmx = 0, dmy = 0;	//ÀÌµ¿ ³¡³ª¸é dmx, dmy ÃÊ±âÈ­
+				dmx = 0, dmy = 0;	//ì´ë™ ëë‚˜ë©´ dmx, dmy ì´ˆê¸°í™”
 			}
 		}
 		setTimer(timer, MONSTER_ANIMATION_TIME);
@@ -320,19 +320,19 @@ void Game6_soundCallback(SoundID sound) {
 
 void Game6_main()
 {
-	scene_g6 = createScene("STGAGE5-1 ÇÏ´Ã ¼¶", "image/game6/ÇÏ´Ã¹è°æ.png");
-	player_g6 = createObject("image/game6/³¯°³¸¶¸®¿ÀÁÂ.png", scene_g6, playerX_g6, playerY_g6, true, (float)playerSize_g6 / PLAYER_IMAGE_SIZE);
+	scene_g6 = createScene("STGAGE5-1 í•˜ëŠ˜ ì„¬", "image/game6/í•˜ëŠ˜ë°°ê²½.png");
+	player_g6 = createObject("image/game6/ë‚ ê°œë§ˆë¦¬ì˜¤ì¢Œ.png", scene_g6, playerX_g6, playerY_g6, true, (float)playerSize_g6 / PLAYER_IMAGE_SIZE);
 
-	//·¹º§1 ¸ó½ºÅÍ ½ºÆù
+	//ë ˆë²¨1 ëª¬ìŠ¤í„° ìŠ¤í°
 	for (int i = 0; i < monsterNumber[0]; i++) {
 		monsterX[i] = setMonsterX[i], monsterY[i] = setMonsterY[i];
-		monster[i] = createObject("image/game6/³¯°³±À¹Ù.png", scene_g6, monsterX[i], monsterY[i], true, (float)monsterSize[i] / MONSTER_IMAGE_SIZE);
+		monster[i] = createObject("image/game6/ë‚ ê°œêµ¼ë°”.png", scene_g6, monsterX[i], monsterY[i], true, (float)monsterSize[i] / MONSTER_IMAGE_SIZE);
 		monsterIsShown[i] = true;
 	}
-	//·¹º§2 ¸ó½ºÅÍ ½ºÆù	
+	//ë ˆë²¨2 ëª¬ìŠ¤í„° ìŠ¤í°	
 	for (int i = monsterNumber[0]; i < monsterNumber[0] + monsterNumber[1]; i++) {
 		monsterX[i] = setMonsterX[i], monsterY[i] = setMonsterY[i];
-		monster[i] = createObject("image/game6/³¯°³ÃÊ·Ï±À¹Ù.png", scene_g6, monsterX[i], monsterY[i], true, (float)monsterSize[i] / MONSTER_IMAGE_SIZE);
+		monster[i] = createObject("image/game6/ë‚ ê°œì´ˆë¡êµ¼ë°”.png", scene_g6, monsterX[i], monsterY[i], true, (float)monsterSize[i] / MONSTER_IMAGE_SIZE);
 		monsterIsShown[i] = true;
 	}
 
@@ -347,10 +347,10 @@ void Game6_main()
 	countDownTimer = createTimer(0.7f);
 	growUpTimer_g6 = createTimer(0.07f);
 
-	bgm_g6 = createSound("sounds/¹è°æÀ½/ÇÏ´Ã¼¶.mp3");
-	countDownSound_g6 = createSound("sounds/game6/Ä«¿îÆ®´Ù¿î.mp3");
-	catchSound1_g6 = createSound("sounds/game6/Á¤´ä1.mp3");
-	catchSound2_g6 = createSound("sounds/game6/Á¤´ä2.mp3");
-	growUpSound_g6 = createSound("sounds/game6/ÆÄ¿ö¾÷.wav");
-	gameClearSound_g6 = createSound("sounds/game6/½ºÅ×ÀÌÁöÅ¬¸®¾î.mp3");
+	bgm_g6 = createSound("sounds/ë°°ê²½ìŒ/í•˜ëŠ˜ì„¬.mp3");
+	countDownSound_g6 = createSound("sounds/game6/ì¹´ìš´íŠ¸ë‹¤ìš´.mp3");
+	catchSound1_g6 = createSound("sounds/game6/ì •ë‹µ1.mp3");
+	catchSound2_g6 = createSound("sounds/game6/ì •ë‹µ2.mp3");
+	growUpSound_g6 = createSound("sounds/game6/íŒŒì›Œì—….wav");
+	gameClearSound_g6 = createSound("sounds/game6/ìŠ¤í…Œì´ì§€í´ë¦¬ì–´.mp3");
 }

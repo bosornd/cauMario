@@ -1,4 +1,4 @@
-#include <bangtal.h>
+ï»¿#include <bangtal.h>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -7,7 +7,7 @@
 #define PLAYER_SPEED				13
 #define monster3_SPEED				1
 #define monster3_NUMBER				12
-#define ENDmonster3_STATE			3	//¸¶Áö¸· ¸ó½ºÅÍ ·¹º§(°ÔÀÓ ³¡³ª´Â ·¹º§)
+#define ENDmonster3_STATE			3	//ë§ˆì§€ë§‰ ëª¬ìŠ¤í„° ë ˆë²¨(ê²Œì„ ëë‚˜ëŠ” ë ˆë²¨)
 #define PLAYER_IMAGE_SIZE			100
 #define monster3_IMAGE_SIZE			100
 #define GAP							13
@@ -21,7 +21,7 @@ ObjectID countDown3;
 TimerID countDown3Timer, playTimer_g63, monster3Timer_g63, growUpTimer_g63;
 extern SoundID bgm_g6, countDownSound_g6, catchSound1_g6, catchSound2_g6, gameOverSound, gameClearSound, growUpSound_g6, buttonClickSound;
 
-extern void enterTitle(int clearScene);	//Å¬¸®¾î½Ã ½ÇÇàÇÒ ÇÔ¼ö
+extern void enterTitle(int clearScene);	//í´ë¦¬ì–´ì‹œ ì‹¤í–‰í•  í•¨ìˆ˜
 
 extern int nowGameSceneNum;
 int playerX_g63 = 600, playerY_g63 = 350;
@@ -30,9 +30,9 @@ int setMonster3Y[monster3_NUMBER] = { 550,550,150,150,    450,450,220,220,  320,
 int monster3X[monster3_NUMBER], monster3Y[monster3_NUMBER];
 int dx_g63 = 0, dy_g63 = 0, dmx_g63 = 0, dmy_g63 = 0;
 
-int playerState_g63 = 1;	//ÇÃ·¹ÀÌ¾î »óÅÂ(Å©±â) : Ã³À½Àº 1´Ü°è
-int monster3State[monster3_NUMBER] = { 1,1,1,1, 2,2,2,2, 3,3,3,3 };	//¸ó½ºÅÍ »óÅÂ
-int monster3Number[ENDmonster3_STATE] = { 4,4,4 };		//stateº° ¸ó½ºÅÍ ¸¶¸®¼ö
+int playerState_g63 = 1;	//í”Œë ˆì´ì–´ ìƒíƒœ(í¬ê¸°) : ì²˜ìŒì€ 1ë‹¨ê³„
+int monster3State[monster3_NUMBER] = { 1,1,1,1, 2,2,2,2, 3,3,3,3 };	//ëª¬ìŠ¤í„° ìƒíƒœ
+int monster3Number[ENDmonster3_STATE] = { 4,4,4 };		//stateë³„ ëª¬ìŠ¤í„° ë§ˆë¦¬ìˆ˜
 float monster3Size[monster3_NUMBER] = { 70,70,70,70, 100,100,100,100, 150,150,150,150 };
 float playerSize_g63 = monster3Size[0];
 
@@ -69,7 +69,7 @@ void restart_g63() {
 	scaleObject(player_g63, (float)playerSize_g63 / PLAYER_IMAGE_SIZE);
 	showObject(player_g63);
 
-	//¸ó½ºÅÍ ½ºÆù
+	//ëª¬ìŠ¤í„° ìŠ¤í°
 	for (int i = 0; i < monster3_NUMBER; i++) {
 		monster3X[i] = setMonster3X[i], monster3Y[i] = setMonster3Y[i];
 		locateObject(monster3[i], scene_g63, monster3X[i], monster3Y[i]);
@@ -92,7 +92,7 @@ void gameClear_g63() {
 
 	hideObject(player_g63);
 
-	showMessage("°ÔÀÓ Å¬¸®¾î");
+	showMessage("ê²Œì„ í´ë¦¬ì–´");
 	stage5Clear = true;
 
 	hideObject(restartButton2_g63);
@@ -129,7 +129,7 @@ void growUp_g63() {
 
 void Game63_mouseCallback(ObjectID object, int x, int y, MouseAction action) {
 
-	if (object == startButton_g63) {		//Å¸ÀÌ¸Ó ÄÑÁö¸é¼­(¿ÀºêÁ§Æ® ÀÌµ¿ ½ÃÀÛ) °ÔÀÓ½ÃÀÛ
+	if (object == startButton_g63) {		//íƒ€ì´ë¨¸ ì¼œì§€ë©´ì„œ(ì˜¤ë¸Œì íŠ¸ ì´ë™ ì‹œì‘) ê²Œì„ì‹œì‘
 		playSound(countDownSound_g6);
 		showObject(restartButton2_g63);
 		showObject(countDown3);
@@ -164,19 +164,19 @@ void Game63_keyboardCallback(KeyCode code, KeyState state)
 {
 	if (nowGameSceneNum == 6) {
 		
-		if (code == 84) {			// UP
-			dy_g63 += (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		if (code == KeyCode::KEY_UP_ARROW) {			// UP
+			dy_g63 += (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
-		else if (code == 85) {		// DOWN
-			dy_g63 -= (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		else if (code == KeyCode::KEY_DOWN_ARROW) {		// DOWN
+			dy_g63 -= (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
-		else if (code == 83) {		// RIGHT
-			setObjectImage(player_g63, "image/game6/³¯°³¸¶¸®¿À¿ì.png");
-			dx_g63 += (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		else if (code == KeyCode::KEY_RIGHT_ARROW) {		// RIGHT
+			setObjectImage(player_g63, "image/game6/ë‚ ê°œë§ˆë¦¬ì˜¤ìš°.png");
+			dx_g63 += (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
-		else if (code == 82) {		// LEFT
-			setObjectImage(player_g63, "image/game6/³¯°³¸¶¸®¿ÀÁÂ.png");
-			dx_g63 -= (state == KeyState::KEYBOARD_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
+		else if (code == KeyCode::KEY_LEFT_ARROW) {		// LEFT
+			setObjectImage(player_g63, "image/game6/ë‚ ê°œë§ˆë¦¬ì˜¤ì¢Œ.png");
+			dx_g63 -= (state == KeyState::KEY_PRESSED ? PLAYER_SPEED : -PLAYER_SPEED);
 		}
 	}
 }
@@ -205,23 +205,23 @@ void Game63_timerCallback(TimerID timer)
 		}
 	}
 
-	//°ø Á¶ÀÛ
+	//ê³µ ì¡°ì‘
 	if (timer == playTimer_g63) {
-		if (playerX_g63 + dx_g63 > 1280 - playerSize_g63 || playerX_g63 + dx_g63 < 0 || playerY_g63 + dy_g63 > 720 - playerSize_g63 || playerY_g63 + dy_g63 < 0) {}	//Å×µÎ¸® ³ª°¡¸é ÀÌµ¿ ¾È½ÃÅ°±â
+		if (playerX_g63 + dx_g63 > 1280 - playerSize_g63 || playerX_g63 + dx_g63 < 0 || playerY_g63 + dy_g63 > 720 - playerSize_g63 || playerY_g63 + dy_g63 < 0) {}	//í…Œë‘ë¦¬ ë‚˜ê°€ë©´ ì´ë™ ì•ˆì‹œí‚¤ê¸°
 
 		else {
 			playerX_g63 += dx_g63; playerY_g63 += dy_g63;
 			locateObject(player_g63, scene_g63, playerX_g63, playerY_g63);
 		}
 		for (int i = 0; i < monster3_NUMBER; i++) {
-			if (monster3IsShown[i] == true) {			//Á×Àº(¾Èº¸ÀÌ´Â) ¸ó½ºÅÍ¿¡´Â ¹İÀÀx
-				if (monster3X[i] - playerX_g63 <= playerSize_g63 - GAP && monster3X[i] - playerX_g63 >= -monster3Size[i] + GAP &&		//ÇÃ·¹ÀÌ¾î°¡ ¸ó½ºÅÍ¶û xÃà ºÎµúÈ÷°í
-					monster3Y[i] - playerY_g63 <= playerSize_g63 - GAP && monster3Y[i] - playerY_g63 >= -monster3Size[i] + GAP) {		//yÃàµµ ºÎµúÈ÷¸é
+			if (monster3IsShown[i] == true) {			//ì£½ì€(ì•ˆë³´ì´ëŠ”) ëª¬ìŠ¤í„°ì—ëŠ” ë°˜ì‘x
+				if (monster3X[i] - playerX_g63 <= playerSize_g63 - GAP && monster3X[i] - playerX_g63 >= -monster3Size[i] + GAP &&		//í”Œë ˆì´ì–´ê°€ ëª¬ìŠ¤í„°ë‘ xì¶• ë¶€ë”ªíˆê³ 
+					monster3Y[i] - playerY_g63 <= playerSize_g63 - GAP && monster3Y[i] - playerY_g63 >= -monster3Size[i] + GAP) {		//yì¶•ë„ ë¶€ë”ªíˆë©´
 
-					if (playerState_g63 == monster3State[i]) {		//ºÎµúÇû´Âµ¥ ·¹º§ÀÌ ¶È°°À¸¸é
+					if (playerState_g63 == monster3State[i]) {		//ë¶€ë”ªí˜”ëŠ”ë° ë ˆë²¨ì´ ë˜‘ê°™ìœ¼ë©´
 						
-						hideObject(monster3[i]);					//¸ó½ºÅÍ Á×ÀÓ
-						monster3IsShown[i] = false;				//¾Èº¸ÀÌ´Â »óÅÂÀÓÀ» ¹è¿­¿¡ ÀúÀå
+						hideObject(monster3[i]);					//ëª¬ìŠ¤í„° ì£½ì„
+						monster3IsShown[i] = false;				//ì•ˆë³´ì´ëŠ” ìƒíƒœì„ì„ ë°°ì—´ì— ì €ì¥
 						monster3Count++;
 
 						if (monster3Count % 2 == 0)
@@ -229,29 +229,29 @@ void Game63_timerCallback(TimerID timer)
 						else
 							playSound(catchSound2_g6);
 
-						if (monster3Count == monster3Number[playerState_g63 - 1]) {				//Áö±İ ·¹º§ ¸ó½ºÅÍ ´Ù Á×ÀÌ¸é
-							if (playerState_g63 != ENDmonster3_STATE) {						//Å¬¸®¾î°¡ ¾Æ´Ï¸é
+						if (monster3Count == monster3Number[playerState_g63 - 1]) {				//ì§€ê¸ˆ ë ˆë²¨ ëª¬ìŠ¤í„° ë‹¤ ì£½ì´ë©´
+							if (playerState_g63 != ENDmonster3_STATE) {						//í´ë¦¬ì–´ê°€ ì•„ë‹ˆë©´
 								nowState_g63 = playerState_g63;
 								growUpCount_g63 = 0;
 								growUp_g63();
 
-								if (playerState_g63 == 1) //1·¹º§ÀÌ¾úÀ¸¸é
-									playerSize_g63 = monster3Size[monster3Number[playerState_g63]];			//ÇÃ·¹ÀÌ¾î »çÀÌÁî ´ÙÀ½ ·¹º§ ¸ó½ºÅÍ¿Í °°°Ô ¸¸µé°í
-								else //2·¹º§ÀÌ¾úÀ¸¸é
+								if (playerState_g63 == 1) //1ë ˆë²¨ì´ì—ˆìœ¼ë©´
+									playerSize_g63 = monster3Size[monster3Number[playerState_g63]];			//í”Œë ˆì´ì–´ ì‚¬ì´ì¦ˆ ë‹¤ìŒ ë ˆë²¨ ëª¬ìŠ¤í„°ì™€ ê°™ê²Œ ë§Œë“¤ê³ 
+								else //2ë ˆë²¨ì´ì—ˆìœ¼ë©´
 									playerSize_g63 = monster3Size[monster3_NUMBER - 1];
 
-								playerState_g63++;													//ÇÃ·¹ÀÌ¾î ·¹º§ ¿Ã¸²
-								scaleObject(player_g63, (float)playerSize_g63 / PLAYER_IMAGE_SIZE);		//ÇÃ·¹ÀÌ¾î »çÀÌÁî ¹Ù²ãÁÜ
+								playerState_g63++;													//í”Œë ˆì´ì–´ ë ˆë²¨ ì˜¬ë¦¼
+								scaleObject(player_g63, (float)playerSize_g63 / PLAYER_IMAGE_SIZE);		//í”Œë ˆì´ì–´ ì‚¬ì´ì¦ˆ ë°”ê¿”ì¤Œ
 								monster3Count = 0;
 							}
-							else {															//	<°ÔÀÓÅ¬¸®¾î>
+							else {															//	<ê²Œì„í´ë¦¬ì–´>
 								gameClear_g63();
 								return;
 							}
 						}
 					}
 
-					else {										//ºÎµúÇû´Âµ¥ ¸ó½ºÅÍ ·¹º§ÀÌ ´õ Å©¸é
+					else {										//ë¶€ë”ªí˜”ëŠ”ë° ëª¬ìŠ¤í„° ë ˆë²¨ì´ ë” í¬ë©´
 						gameOver_g63();
 						return;
 					}
@@ -264,33 +264,33 @@ void Game63_timerCallback(TimerID timer)
 
 	}
 
-	//¸ó½ºÅÍ ·£´ı ÀÌµ¿
+	//ëª¬ìŠ¤í„° ëœë¤ ì´ë™
 	if (timer == monster3Timer_g63) {
 
 		for (int j = 0; j < monster3_NUMBER; j++) {
-			if (monster3IsShown[j] == true) {			//Á×Àº(¾Èº¸ÀÌ´Â) ¸ó½ºÅÍ¿¡´Â ¹İÀÀx
+			if (monster3IsShown[j] == true) {			//ì£½ì€(ì•ˆë³´ì´ëŠ”) ëª¬ìŠ¤í„°ì—ëŠ” ë°˜ì‘x
 
 				random();
 
-				if (num == 0)	//¿ŞÂÊ ÀÌµ¿
+				if (num == 0)	//ì™¼ìª½ ì´ë™
 					dmx_g63 -= monster3_SPEED;
-				else if (num == 1)	//¿À¸¥ÂÊ ÀÌµ¿
+				else if (num == 1)	//ì˜¤ë¥¸ìª½ ì´ë™
 					dmx_g63 += monster3_SPEED;
-				else if (num == 2)	//¾Æ·¡ ÀÌµ¿
+				else if (num == 2)	//ì•„ë˜ ì´ë™
 					dmy_g63 -= monster3_SPEED;
-				else if (num == 3)	//À§ ÀÌµ¿
+				else if (num == 3)	//ìœ„ ì´ë™
 					dmy_g63 += monster3_SPEED;
 
 				for (int i = 0; i < 32; i++) {
-					if (monster3X[j] + dmx_g63 > 1185 || monster3X[j] + dmx_g63 < 15 || monster3Y[j] + dmy_g63 > 635 || monster3Y[j] + dmy_g63 < 15)	//Å×µÎ¸® ³ª°¡¸é ÀÌµ¿ ¾È½ÃÅ°±â
+					if (monster3X[j] + dmx_g63 > 1185 || monster3X[j] + dmx_g63 < 15 || monster3Y[j] + dmy_g63 > 635 || monster3Y[j] + dmy_g63 < 15)	//í…Œë‘ë¦¬ ë‚˜ê°€ë©´ ì´ë™ ì•ˆì‹œí‚¤ê¸°
 						break;
 
 					else {
 						monster3X[j] += dmx_g63, monster3Y[j] += dmy_g63;
-						locateObject(monster3[j], scene_g63, monster3X[j], monster3Y[j]);			//32¹ø ÂÉ°³¼­ ÀÌµ¿
+						locateObject(monster3[j], scene_g63, monster3X[j], monster3Y[j]);			//32ë²ˆ ìª¼ê°œì„œ ì´ë™
 					}
 				}
-				dmx_g63 = 0, dmy_g63 = 0;	//ÀÌµ¿ ³¡³ª¸é dmx_g63, dmy_g63 ÃÊ±âÈ­
+				dmx_g63 = 0, dmy_g63 = 0;	//ì´ë™ ëë‚˜ë©´ dmx_g63, dmy_g63 ì´ˆê¸°í™”
 			}
 		}
 		setTimer(timer, monster3_ANIMATION_TIME);
@@ -329,25 +329,25 @@ void Game63_timerCallback(TimerID timer)
 
 void Game63_main()
 {
-	scene_g63 = createScene("STAGE6-3 ÇÏ´Ã ¼¶", "image/game6/ÇÏ´Ã¹è°æ.png");
-	player_g63 = createObject("image/game6/³¯°³¸¶¸®¿ÀÁÂ.png", scene_g63, playerX_g63, playerY_g63, true, (float)playerSize_g63 / PLAYER_IMAGE_SIZE);
+	scene_g63 = createScene("STAGE6-3 í•˜ëŠ˜ ì„¬", "image/game6/í•˜ëŠ˜ë°°ê²½.png");
+	player_g63 = createObject("image/game6/ë‚ ê°œë§ˆë¦¬ì˜¤ì¢Œ.png", scene_g63, playerX_g63, playerY_g63, true, (float)playerSize_g63 / PLAYER_IMAGE_SIZE);
 
-	//·¹º§1 ¸ó½ºÅÍ ½ºÆù
+	//ë ˆë²¨1 ëª¬ìŠ¤í„° ìŠ¤í°
 	for (int i = 0; i < monster3Number[0]; i++) {
 		monster3X[i] = setMonster3X[i], monster3Y[i] = setMonster3Y[i];
-		monster3[i] = createObject("image/game6/³¯°³±À¹Ù.png", scene_g63, monster3X[i], monster3Y[i], true, (float)monster3Size[i] / monster3_IMAGE_SIZE);
+		monster3[i] = createObject("image/game6/ë‚ ê°œêµ¼ë°”.png", scene_g63, monster3X[i], monster3Y[i], true, (float)monster3Size[i] / monster3_IMAGE_SIZE);
 		monster3IsShown[i] = true;
 	}
-	//·¹º§2 ¸ó½ºÅÍ ½ºÆù	
+	//ë ˆë²¨2 ëª¬ìŠ¤í„° ìŠ¤í°	
 	for (int i = monster3Number[0]; i < monster3Number[0] + monster3Number[1]; i++) {
 		monster3X[i] = setMonster3X[i], monster3Y[i] = setMonster3Y[i];
-		monster3[i] = createObject("image/game6/³¯°³ÃÊ·Ï±À¹Ù.png", scene_g63, monster3X[i], monster3Y[i], true, (float)monster3Size[i] / monster3_IMAGE_SIZE);
+		monster3[i] = createObject("image/game6/ë‚ ê°œì´ˆë¡êµ¼ë°”.png", scene_g63, monster3X[i], monster3Y[i], true, (float)monster3Size[i] / monster3_IMAGE_SIZE);
 		monster3IsShown[i] = true;
 	}
-	//·¹º§3 ¸ó½ºÅÍ ½ºÆù	
+	//ë ˆë²¨3 ëª¬ìŠ¤í„° ìŠ¤í°	
 	for (int i = monster3Number[0] + monster3Number[1]; i < monster3Number[0] + monster3Number[1] + monster3Number[2]; i++) {
 		monster3X[i] = setMonster3X[i], monster3Y[i] = setMonster3Y[i];
-		monster3[i] = createObject("image/game6/³¯°³±İ±À¹Ù.png", scene_g63, monster3X[i], monster3Y[i], true, (float)monster3Size[i] / monster3_IMAGE_SIZE);
+		monster3[i] = createObject("image/game6/ë‚ ê°œê¸ˆêµ¼ë°”.png", scene_g63, monster3X[i], monster3Y[i], true, (float)monster3Size[i] / monster3_IMAGE_SIZE);
 		monster3IsShown[i] = true;
 	}
 
